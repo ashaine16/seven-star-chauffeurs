@@ -1,0 +1,534 @@
+{
+  "count": 132,
+  "totalBytes": 83900838,
+  "frames": [
+    {
+      "file": "frame_0001.jpg",
+      "bytes": 587555
+    },
+    {
+      "file": "frame_0002.jpg",
+      "bytes": 591190
+    },
+    {
+      "file": "frame_0003.jpg",
+      "bytes": 591780
+    },
+    {
+      "file": "frame_0004.jpg",
+      "bytes": 595886
+    },
+    {
+      "file": "frame_0005.jpg",
+      "bytes": 600367
+    },
+    {
+      "file": "frame_0006.jpg",
+      "bytes": 604064
+    },
+    {
+      "file": "frame_0007.jpg",
+      "bytes": 603989
+    },
+    {
+      "file": "frame_0008.jpg",
+      "bytes": 605067
+    },
+    {
+      "file": "frame_0009.jpg",
+      "bytes": 605188
+    },
+    {
+      "file": "frame_0010.jpg",
+      "bytes": 608547
+    },
+    {
+      "file": "frame_0011.jpg",
+      "bytes": 609236
+    },
+    {
+      "file": "frame_0012.jpg",
+      "bytes": 610538
+    },
+    {
+      "file": "frame_0013.jpg",
+      "bytes": 609980
+    },
+    {
+      "file": "frame_0014.jpg",
+      "bytes": 610022
+    },
+    {
+      "file": "frame_0015.jpg",
+      "bytes": 610048
+    },
+    {
+      "file": "frame_0016.jpg",
+      "bytes": 612866
+    },
+    {
+      "file": "frame_0017.jpg",
+      "bytes": 613138
+    },
+    {
+      "file": "frame_0018.jpg",
+      "bytes": 614702
+    },
+    {
+      "file": "frame_0019.jpg",
+      "bytes": 614843
+    },
+    {
+      "file": "frame_0020.jpg",
+      "bytes": 616247
+    },
+    {
+      "file": "frame_0021.jpg",
+      "bytes": 616580
+    },
+    {
+      "file": "frame_0022.jpg",
+      "bytes": 622052
+    },
+    {
+      "file": "frame_0023.jpg",
+      "bytes": 623294
+    },
+    {
+      "file": "frame_0024.jpg",
+      "bytes": 627632
+    },
+    {
+      "file": "frame_0025.jpg",
+      "bytes": 628601
+    },
+    {
+      "file": "frame_0026.jpg",
+      "bytes": 629044
+    },
+    {
+      "file": "frame_0027.jpg",
+      "bytes": 628420
+    },
+    {
+      "file": "frame_0028.jpg",
+      "bytes": 628962
+    },
+    {
+      "file": "frame_0029.jpg",
+      "bytes": 628825
+    },
+    {
+      "file": "frame_0030.jpg",
+      "bytes": 628116
+    },
+    {
+      "file": "frame_0031.jpg",
+      "bytes": 628032
+    },
+    {
+      "file": "frame_0032.jpg",
+      "bytes": 627378
+    },
+    {
+      "file": "frame_0033.jpg",
+      "bytes": 629230
+    },
+    {
+      "file": "frame_0034.jpg",
+      "bytes": 630347
+    },
+    {
+      "file": "frame_0035.jpg",
+      "bytes": 630264
+    },
+    {
+      "file": "frame_0036.jpg",
+      "bytes": 630238
+    },
+    {
+      "file": "frame_0037.jpg",
+      "bytes": 632515
+    },
+    {
+      "file": "frame_0038.jpg",
+      "bytes": 635762
+    },
+    {
+      "file": "frame_0039.jpg",
+      "bytes": 636496
+    },
+    {
+      "file": "frame_0040.jpg",
+      "bytes": 638875
+    },
+    {
+      "file": "frame_0041.jpg",
+      "bytes": 640760
+    },
+    {
+      "file": "frame_0042.jpg",
+      "bytes": 643283
+    },
+    {
+      "file": "frame_0043.jpg",
+      "bytes": 643985
+    },
+    {
+      "file": "frame_0044.jpg",
+      "bytes": 644296
+    },
+    {
+      "file": "frame_0045.jpg",
+      "bytes": 646153
+    },
+    {
+      "file": "frame_0046.jpg",
+      "bytes": 648985
+    },
+    {
+      "file": "frame_0047.jpg",
+      "bytes": 649682
+    },
+    {
+      "file": "frame_0048.jpg",
+      "bytes": 651444
+    },
+    {
+      "file": "frame_0049.jpg",
+      "bytes": 652356
+    },
+    {
+      "file": "frame_0050.jpg",
+      "bytes": 654520
+    },
+    {
+      "file": "frame_0051.jpg",
+      "bytes": 653934
+    },
+    {
+      "file": "frame_0052.jpg",
+      "bytes": 655881
+    },
+    {
+      "file": "frame_0053.jpg",
+      "bytes": 656499
+    },
+    {
+      "file": "frame_0054.jpg",
+      "bytes": 659835
+    },
+    {
+      "file": "frame_0055.jpg",
+      "bytes": 659589
+    },
+    {
+      "file": "frame_0056.jpg",
+      "bytes": 660194
+    },
+    {
+      "file": "frame_0057.jpg",
+      "bytes": 660900
+    },
+    {
+      "file": "frame_0058.jpg",
+      "bytes": 661574
+    },
+    {
+      "file": "frame_0059.jpg",
+      "bytes": 662535
+    },
+    {
+      "file": "frame_0060.jpg",
+      "bytes": 664567
+    },
+    {
+      "file": "frame_0061.jpg",
+      "bytes": 663804
+    },
+    {
+      "file": "frame_0062.jpg",
+      "bytes": 662978
+    },
+    {
+      "file": "frame_0063.jpg",
+      "bytes": 662818
+    },
+    {
+      "file": "frame_0064.jpg",
+      "bytes": 663740
+    },
+    {
+      "file": "frame_0065.jpg",
+      "bytes": 663334
+    },
+    {
+      "file": "frame_0066.jpg",
+      "bytes": 661602
+    },
+    {
+      "file": "frame_0067.jpg",
+      "bytes": 659072
+    },
+    {
+      "file": "frame_0068.jpg",
+      "bytes": 662015
+    },
+    {
+      "file": "frame_0069.jpg",
+      "bytes": 664101
+    },
+    {
+      "file": "frame_0070.jpg",
+      "bytes": 663195
+    },
+    {
+      "file": "frame_0071.jpg",
+      "bytes": 661283
+    },
+    {
+      "file": "frame_0072.jpg",
+      "bytes": 658848
+    },
+    {
+      "file": "frame_0073.jpg",
+      "bytes": 659353
+    },
+    {
+      "file": "frame_0074.jpg",
+      "bytes": 658473
+    },
+    {
+      "file": "frame_0075.jpg",
+      "bytes": 657605
+    },
+    {
+      "file": "frame_0076.jpg",
+      "bytes": 656515
+    },
+    {
+      "file": "frame_0077.jpg",
+      "bytes": 654577
+    },
+    {
+      "file": "frame_0078.jpg",
+      "bytes": 655220
+    },
+    {
+      "file": "frame_0079.jpg",
+      "bytes": 656224
+    },
+    {
+      "file": "frame_0080.jpg",
+      "bytes": 655225
+    },
+    {
+      "file": "frame_0081.jpg",
+      "bytes": 651692
+    },
+    {
+      "file": "frame_0082.jpg",
+      "bytes": 649844
+    },
+    {
+      "file": "frame_0083.jpg",
+      "bytes": 650034
+    },
+    {
+      "file": "frame_0084.jpg",
+      "bytes": 651443
+    },
+    {
+      "file": "frame_0085.jpg",
+      "bytes": 651124
+    },
+    {
+      "file": "frame_0086.jpg",
+      "bytes": 648104
+    },
+    {
+      "file": "frame_0087.jpg",
+      "bytes": 644759
+    },
+    {
+      "file": "frame_0088.jpg",
+      "bytes": 646081
+    },
+    {
+      "file": "frame_0089.jpg",
+      "bytes": 645090
+    },
+    {
+      "file": "frame_0090.jpg",
+      "bytes": 644206
+    },
+    {
+      "file": "frame_0091.jpg",
+      "bytes": 643108
+    },
+    {
+      "file": "frame_0092.jpg",
+      "bytes": 641518
+    },
+    {
+      "file": "frame_0093.jpg",
+      "bytes": 641514
+    },
+    {
+      "file": "frame_0094.jpg",
+      "bytes": 642457
+    },
+    {
+      "file": "frame_0095.jpg",
+      "bytes": 642051
+    },
+    {
+      "file": "frame_0096.jpg",
+      "bytes": 639679
+    },
+    {
+      "file": "frame_0097.jpg",
+      "bytes": 638514
+    },
+    {
+      "file": "frame_0098.jpg",
+      "bytes": 639814
+    },
+    {
+      "file": "frame_0099.jpg",
+      "bytes": 641391
+    },
+    {
+      "file": "frame_0100.jpg",
+      "bytes": 639550
+    },
+    {
+      "file": "frame_0101.jpg",
+      "bytes": 636012
+    },
+    {
+      "file": "frame_0102.jpg",
+      "bytes": 632825
+    },
+    {
+      "file": "frame_0103.jpg",
+      "bytes": 633641
+    },
+    {
+      "file": "frame_0104.jpg",
+      "bytes": 632078
+    },
+    {
+      "file": "frame_0105.jpg",
+      "bytes": 631119
+    },
+    {
+      "file": "frame_0106.jpg",
+      "bytes": 630611
+    },
+    {
+      "file": "frame_0107.jpg",
+      "bytes": 626896
+    },
+    {
+      "file": "frame_0108.jpg",
+      "bytes": 626117
+    },
+    {
+      "file": "frame_0109.jpg",
+      "bytes": 627210
+    },
+    {
+      "file": "frame_0110.jpg",
+      "bytes": 625966
+    },
+    {
+      "file": "frame_0111.jpg",
+      "bytes": 622943
+    },
+    {
+      "file": "frame_0112.jpg",
+      "bytes": 621273
+    },
+    {
+      "file": "frame_0113.jpg",
+      "bytes": 623873
+    },
+    {
+      "file": "frame_0114.jpg",
+      "bytes": 625534
+    },
+    {
+      "file": "frame_0115.jpg",
+      "bytes": 625654
+    },
+    {
+      "file": "frame_0116.jpg",
+      "bytes": 624488
+    },
+    {
+      "file": "frame_0117.jpg",
+      "bytes": 624164
+    },
+    {
+      "file": "frame_0118.jpg",
+      "bytes": 625153
+    },
+    {
+      "file": "frame_0119.jpg",
+      "bytes": 625261
+    },
+    {
+      "file": "frame_0120.jpg",
+      "bytes": 626485
+    },
+    {
+      "file": "frame_0121.jpg",
+      "bytes": 626627
+    },
+    {
+      "file": "frame_0122.jpg",
+      "bytes": 626446
+    },
+    {
+      "file": "frame_0123.jpg",
+      "bytes": 624250
+    },
+    {
+      "file": "frame_0124.jpg",
+      "bytes": 625393
+    },
+    {
+      "file": "frame_0125.jpg",
+      "bytes": 625711
+    },
+    {
+      "file": "frame_0126.jpg",
+      "bytes": 625145
+    },
+    {
+      "file": "frame_0127.jpg",
+      "bytes": 623279
+    },
+    {
+      "file": "frame_0128.jpg",
+      "bytes": 624047
+    },
+    {
+      "file": "frame_0129.jpg",
+      "bytes": 625129
+    },
+    {
+      "file": "frame_0130.jpg",
+      "bytes": 624419
+    },
+    {
+      "file": "frame_0131.jpg",
+      "bytes": 622946
+    },
+    {
+      "file": "frame_0132.jpg",
+      "bytes": 621300
+    }
+  ]
+}
