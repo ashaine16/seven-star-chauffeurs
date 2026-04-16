@@ -25,6 +25,17 @@ type Manifest = { count: number; frames: string[]; width: number };
 const FRAMES_PATH = "/frames";
 const MOBILE_BREAKPOINT = 768;
 
+function scheduleIdle(cb: () => void) {
+  const w = window as Window & {
+    requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+  };
+  if (typeof w.requestIdleCallback === "function") {
+    w.requestIdleCallback(cb, { timeout: 500 });
+  } else {
+    window.setTimeout(cb, 0);
+  }
+}
+
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
@@ -99,14 +110,12 @@ export default function Hero() {
               i += 1;
             }
             if (i < manifest.count) {
-              // @ts-expect-error requestIdleCallback not typed on window in lib.dom
-              (window.requestIdleCallback || window.setTimeout)(run, { timeout: 500 });
+              scheduleIdle(run);
             } else {
               resolveLazy();
             }
           };
-          // @ts-expect-error see above
-          (window.requestIdleCallback || window.setTimeout)(run, { timeout: 500 });
+          scheduleIdle(run);
         });
 
       await eagerBatch;
