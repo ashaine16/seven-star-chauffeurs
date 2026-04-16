@@ -39,6 +39,20 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: clamp(72px, 9vh, 108px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* Page load sequence */
 @keyframes page-in {
   from { opacity: 0; }

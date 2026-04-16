@@ -40,17 +40,17 @@ export default function Navbar() {
         className="mx-auto flex items-center justify-between"
         style={{
           maxWidth: "1400px",
-          padding: "clamp(14px, 1.6vw, 22px) clamp(20px, 4vw, 48px)",
+          padding: "clamp(6px, 0.8vw, 10px) clamp(20px, 4vw, 48px)",
         }}
       >
-        <a href="#top" aria-label="Seven Star Chauffeurs — home" className="flex items-center gap-3">
+        <a href="#top" aria-label="Seven Star Chauffeurs home" className="flex items-center gap-3">
           <NextImage
-            src="/logos/seven-star-gold.png"
+            src="/logos/seven-star-mark.png"
             alt="Seven Star Chauffeurs"
             width={400}
             height={400}
             priority
-            style={{ height: "clamp(56px, 6vw, 76px)", width: "auto" }}
+            style={{ height: "clamp(72px, 7vw, 96px)", width: "auto", display: "block" }}
           />
         </a>
 

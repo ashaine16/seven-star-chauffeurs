@@ -4,8 +4,21 @@ import { useEffect, useRef, useState } from "react";
 import NextImage from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+function smoothScrollTo(target: string) {
+  const navOffset = Math.min(
+    Math.max(72, window.innerHeight * 0.09),
+    108,
+  );
+  gsap.to(window, {
+    duration: 1.6,
+    ease: "cubic-bezier(0.16, 1, 0.3, 1)",
+    scrollTo: { y: target, offsetY: navOffset, autoKill: true },
+  });
+}
 
 type Manifest = { count: number; frames: string[]; width: number };
 
@@ -408,7 +421,7 @@ export default function Hero() {
                 height={1200}
                 priority
                 style={{
-                  height: "clamp(160px, 16vw, 210px)",
+                  height: "clamp(200px, 20vw, 260px)",
                   width: "auto",
                   display: "block",
                   filter: "drop-shadow(0 2px 24px rgba(5,5,5,0.6))",
@@ -420,7 +433,7 @@ export default function Hero() {
               className="page-in-text text-center"
               style={{
                 fontFamily: "var(--font-display)",
-                fontWeight: 500,
+                fontWeight: 600,
                 fontStyle: "normal",
                 fontSize: "clamp(38px, 5.2vw, 64px)",
                 letterSpacing: "0.22em",
@@ -432,7 +445,7 @@ export default function Hero() {
                 textTransform: "uppercase",
               }}
             >
-              Premium
+              Luxury
             </h1>
 
             <div
@@ -469,6 +482,10 @@ export default function Hero() {
             >
               <a
                 href="#reserve"
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollTo("#reserve");
+                }}
                 className="btn-gold inline-flex items-center justify-center"
                 style={{
                   padding: "12px 24px",
@@ -490,6 +507,10 @@ export default function Hero() {
               </a>
               <a
                 href="#fleet"
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollTo("#fleet");
+                }}
                 className="inline-flex items-center justify-center"
                 style={{
                   padding: "12px 24px",
