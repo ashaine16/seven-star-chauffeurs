@@ -139,7 +139,7 @@ export default function Footer() {
               }}
             >
               <NextImage
-                src="/logos/seven-star-mark.png"
+                src="/logos/seven-star-mark.webp"
                 alt="Seven Star Chauffeurs"
                 width={400}
                 height={400}

@@ -31,7 +31,8 @@ type Service = (typeof SERVICES)[number];
 type Vehicle = (typeof VEHICLES)[number];
 
 type FormState = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   tel: string;
   date: string;
@@ -46,7 +47,8 @@ type FormState = {
 type Errors = Partial<Record<keyof FormState, string>>;
 
 const INITIAL: FormState = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   tel: "",
   date: "",
@@ -288,7 +290,8 @@ function ReserveForm() {
 
   function validate(f: FormState): Errors {
     const e: Errors = {};
-    if (!f.name.trim()) e.name = "Please share your name.";
+    if (!f.firstName.trim()) e.firstName = "Please share your first name.";
+    if (!f.lastName.trim()) e.lastName = "And your last name.";
     if (!f.email.trim()) e.email = "Please share your email.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email))
       e.email = "That email doesn't look quite right.";
@@ -304,7 +307,8 @@ function ReserveForm() {
     const e = validate(form);
     setErrors(e);
     setTouched({
-      name: true,
+      firstName: true,
+      lastName: true,
       email: true,
       tel: true,
       date: true,
@@ -353,13 +357,22 @@ function ReserveForm() {
         style={{ gap: "clamp(18px, 2.2vw, 28px)" }}
       >
         <Field
-          label="Name"
+          label="First name"
           required
-          value={form.name}
-          onChange={(v) => update("name", v)}
-          onBlur={() => markTouched("name")}
-          error={touched.name ? errors.name : undefined}
-          autoComplete="name"
+          value={form.firstName}
+          onChange={(v) => update("firstName", v)}
+          onBlur={() => markTouched("firstName")}
+          error={touched.firstName ? errors.firstName : undefined}
+          autoComplete="given-name"
+        />
+        <Field
+          label="Last name"
+          required
+          value={form.lastName}
+          onChange={(v) => update("lastName", v)}
+          onBlur={() => markTouched("lastName")}
+          error={touched.lastName ? errors.lastName : undefined}
+          autoComplete="family-name"
         />
         <Field
           label="Email"
@@ -536,7 +549,7 @@ function ConfirmationPanel({
   form: FormState;
 }) {
   const summary: { label: string; value: string }[] = [
-    { label: "Name", value: form.name },
+    { label: "Name", value: `${form.firstName} ${form.lastName}`.trim() },
     { label: "Email", value: form.email },
     { label: "Telephone", value: form.tel },
     {
@@ -611,7 +624,7 @@ function ConfirmationPanel({
           lineHeight: 1.2,
         }}
       >
-        Thank you, {form.name.split(" ")[0] || "and welcome"}.
+        Thank you, {form.firstName || "and welcome"}.
         <br />
         <em style={{ fontStyle: "italic", color: "var(--gold)" }}>
           A concierge will reply within the hour.

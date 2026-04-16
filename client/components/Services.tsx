@@ -29,7 +29,7 @@ const SERVICES: Service[] = [
       "Luggage service and kerbside greet",
       "Executive seating with chilled refreshments",
     ],
-    image: "/fleet/phantom.png",
+    image: "/fleet/phantom.webp",
     imageAlt: "Rolls-Royce Phantom staged for an airport arrival",
   },
   {
@@ -42,7 +42,7 @@ const SERVICES: Service[] = [
       "NDA-ready and discretion-trained",
       "Rolls-Royce Ghost Series II, the executive’s car",
     ],
-    image: "/fleet/ghost.png",
+    image: "/fleet/ghost.webp",
     imageAlt: "Rolls-Royce Ghost Series II in downtown Vancouver",
   },
   {
@@ -55,7 +55,7 @@ const SERVICES: Service[] = [
       "Custom livery and white-glove presentation",
       "Flexible multi-location itineraries",
     ],
-    image: "/fleet/cullinan.png",
+    image: "/fleet/cullinan.webp",
     imageAlt: "Rolls-Royce Cullinan Black Badge prepared for a wedding",
   },
   {
@@ -68,7 +68,7 @@ const SERVICES: Service[] = [
       "Scenic-stop itineraries curated by request",
       "Fully-electric luxury SUV",
     ],
-    image: "/fleet/escalade-iq.png",
+    image: "/fleet/escalade-iq.webp",
     imageAlt: "Cadillac Escalade IQ on the Sea-to-Sky Highway",
   },
   {
@@ -81,7 +81,7 @@ const SERVICES: Service[] = [
       "Onboard bar and ambient lighting",
       "Dedicated host beyond the driver",
     ],
-    image: "/fleet/party-bus.png",
+    image: "/fleet/party-bus.webp",
     imageAlt: "Luxury party bus exterior",
   },
   {
@@ -94,7 +94,7 @@ const SERVICES: Service[] = [
       "Champagne and refreshment service",
       "Dynamic itinerary, revise en route",
     ],
-    image: "/fleet/maybach.png",
+    image: "/fleet/maybach-interior.webp",
     imageAlt: "Mercedes-Maybach GLS 600 rear cabin interior",
   },
 ];

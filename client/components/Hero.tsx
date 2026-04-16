@@ -20,7 +20,8 @@ function smoothScrollTo(target: string) {
   });
 }
 
-type Manifest = { count: number; frames: string[]; width: number };
+type ManifestFrame = { file: string; bytes?: number };
+type Manifest = { count: number; frames: ManifestFrame[] };
 
 const FRAMES_PATH = "/frames";
 const MOBILE_BREAKPOINT = 768;
@@ -79,7 +80,7 @@ export default function Hero() {
         new Promise<void>((resolve) => {
           const img = new Image();
           img.decoding = "async";
-          img.src = `${FRAMES_PATH}/${manifest.frames[i]}`;
+          img.src = `${FRAMES_PATH}/${manifest.frames[i].file}`;
           img.onload = () => {
             images[i] = img;
             bumpProgress();
@@ -143,6 +144,13 @@ export default function Hero() {
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
+    const getSize = () => {
+      const parent = canvas.parentElement;
+      const w = parent?.clientWidth ?? window.innerWidth;
+      const h = parent?.clientHeight ?? window.innerHeight;
+      return { w, h };
+    };
+
     const drawFrame = (index: number) => {
       const frames = framesRef.current;
       if (!frames.length) return;
@@ -151,8 +159,7 @@ export default function Hero() {
       let img: HTMLImageElement | undefined = frames[clamped];
       for (let i = clamped; i >= 0 && !img; i--) img = frames[i];
       if (!img) return;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
+      const { w: vw, h: vh } = getSize();
       const scale = Math.max(vw / img.width, vh / img.height);
       const w = img.width * scale;
       const h = img.height * scale;
@@ -165,12 +172,13 @@ export default function Hero() {
 
     const sizeCanvas = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const targetW = isMobile ? 1080 : window.innerWidth;
-      const targetH = isMobile ? 608 : window.innerHeight;
+      const { w: vw, h: vh } = getSize();
+      const targetW = isMobile ? 1080 : vw;
+      const targetH = isMobile ? 608 : vh;
       canvas.width = Math.floor(targetW * dpr);
       canvas.height = Math.floor(targetH * dpr);
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
@@ -424,7 +432,7 @@ export default function Hero() {
 
             <div className="page-in-logo">
               <NextImage
-                src="/logos/seven-star-gold.png"
+                src="/logos/seven-star-gold.webp"
                 alt="Seven Star Chauffeurs"
                 width={1200}
                 height={1200}

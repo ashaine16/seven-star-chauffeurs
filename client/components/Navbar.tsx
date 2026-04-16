@@ -45,7 +45,7 @@ export default function Navbar() {
       >
         <a href="#top" aria-label="Seven Star Chauffeurs home" className="flex items-center gap-3">
           <NextImage
-            src="/logos/seven-star-mark.png"
+            src="/logos/seven-star-mark.webp"
             alt="Seven Star Chauffeurs"
             width={400}
             height={400}

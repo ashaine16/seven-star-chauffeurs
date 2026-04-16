@@ -168,8 +168,8 @@ export default function Testimonials() {
                 letterSpacing: "0.02em",
               }}
             >
-              Anything else? Telephone the concierge. We answer within the
-              hour.
+              Anything else? Just give us a call and we'll be happy to
+              answer.
             </p>
           </div>
 

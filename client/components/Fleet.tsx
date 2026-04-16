@@ -22,42 +22,42 @@ const FLEET: Vehicle[] = [
     model: "Phantom",
     description:
       "The benchmark for chauffeured luxury. A cabin of hand-stitched leather and star-field headliner, gliding in near-silence.",
-    image: "/fleet/phantom.png",
+    image: "/fleet/phantom.webp",
   },
   {
     make: "Rolls-Royce",
     model: "Ghost Series II",
     description:
       "A driver’s Rolls-Royce. Effortless performance paired with the pinnacle of rear-cabin refinement.",
-    image: "/fleet/ghost.png",
+    image: "/fleet/ghost.webp",
   },
   {
     make: "Rolls-Royce",
     model: "Cullinan Black Badge",
     description:
       "Unrelenting presence. The darker, more assertive expression of Rolls-Royce SUV craftsmanship.",
-    image: "/fleet/cullinan.png",
+    image: "/fleet/cullinan.webp",
   },
   {
     make: "Mercedes-Maybach",
     model: "GLS 600",
     description:
       "First-class for six. Reclining rear thrones, champagne flutes, and Executive Seating beyond what a sedan can offer.",
-    image: "/fleet/maybach.png",
+    image: "/fleet/maybach.webp",
   },
   {
     make: "Cadillac",
     model: "Escalade IQ",
     description:
       "Among the first fully-electric luxury chauffeur vehicles in Western Canada. Silent, immense, forward.",
-    image: "/fleet/escalade-iq.png",
+    image: "/fleet/escalade-iq.webp",
   },
   {
     make: "Private",
     model: "Luxury Party Bus",
     description:
       "For celebrations that travel. A touring coach reserved exclusively for weddings, galas, and private milestones.",
-    image: "/fleet/party-bus.png",
+    image: "/fleet/party-bus.webp",
   },
 ];
 
@@ -77,6 +77,58 @@ export default function Fleet() {
     apply();
     mql.addEventListener("change", apply);
     return () => mql.removeEventListener("change", apply);
+  }, []);
+
+  // Elegant header + first-card entrance — runs on both desktop and mobile
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctxGsap = gsap.context(() => {
+      const header = section.querySelector<HTMLElement>("[data-fleet-header]");
+      if (header) {
+        const items = header.querySelectorAll<HTMLElement>("[data-fleet-reveal]");
+        const rule = header.querySelector<HTMLElement>("[data-fleet-rule]");
+
+        gsap.set(items, { y: 36, opacity: 0, willChange: "transform, opacity" });
+        if (rule) gsap.set(rule, { scaleX: 0, transformOrigin: "left center" });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: header,
+            start: "top 82%",
+            toggleActions: "play none none reverse",
+          },
+          defaults: { ease: "cubic-bezier(0.16, 1, 0.3, 1)" },
+        });
+        tl.to(items, { y: 0, opacity: 1, duration: 1.1, stagger: 0.14 }, 0);
+        if (rule) tl.to(rule, { scaleX: 1, duration: 0.9 }, 0.25);
+      }
+
+      const firstCard = section.querySelector<HTMLElement>("[data-fleet-card]:first-of-type");
+      if (firstCard) {
+        const image = firstCard.querySelector<HTMLElement>("[data-fleet-image]");
+        if (image) {
+          gsap.fromTo(
+            image,
+            { opacity: 0, scale: 1.04 },
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 1.4,
+              ease: "cubic-bezier(0.16, 1, 0.3, 1)",
+              scrollTrigger: {
+                trigger: firstCard,
+                start: "top 88%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          );
+        }
+      }
+    }, section);
+
+    return () => ctxGsap.revert();
   }, []);
 
   useLayoutEffect(() => {
@@ -188,6 +240,7 @@ export default function Fleet() {
       {/* Section header sits ABOVE the pinned area so it scrolls past normally
           before the horizontal pin begins — no more "hostage at top" feel. */}
       <div
+        data-fleet-header
         className="mx-auto"
         style={{
           maxWidth: "1400px",
@@ -196,6 +249,7 @@ export default function Fleet() {
         }}
       >
         <div
+          data-fleet-reveal
           style={{
             fontFamily: "var(--font-sans)",
             fontWeight: 300,
@@ -208,10 +262,12 @@ export default function Fleet() {
           I.&nbsp;&nbsp;The Fleet
         </div>
         <div
+          data-fleet-rule
           className="mt-4 h-[1px] bg-[var(--gold)]"
           style={{ width: "60px" }}
         />
         <h2
+          data-fleet-reveal
           style={{
             fontFamily: "var(--font-display)",
             fontWeight: 400,
@@ -226,6 +282,7 @@ export default function Fleet() {
           Six vehicles. One standard.
         </h2>
         <p
+          data-fleet-reveal
           style={{
             marginTop: "18px",
             maxWidth: "56ch",
