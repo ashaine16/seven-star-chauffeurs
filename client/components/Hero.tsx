@@ -421,7 +421,7 @@ function DesktopHero() {
     sizeCanvas();
     window.addEventListener("resize", sizeCanvas, { passive: true });
 
-    const runway = 280;
+    const runway = 240;
 
     const ctxGsap = gsap.context(() => {
       const master = gsap.timeline({
@@ -460,7 +460,7 @@ function DesktopHero() {
       }
 
       if (darkScrimRef.current) {
-        master.to(darkScrimRef.current, { opacity: 0.35, duration: (runway - 220) / runway, ease: "power1.in" }, 220 / runway);
+        master.to(darkScrimRef.current, { opacity: 0.35, duration: (runway - 190) / runway, ease: "power1.in" }, 190 / runway);
       }
 
       if (darkScrimRef.current && canvasWrapRef.current) {
@@ -488,7 +488,7 @@ function DesktopHero() {
       ref={sectionRef}
       aria-label="Seven Star Chauffeurs — cinematic door opening"
       className="relative w-full bg-[var(--obsidian)]"
-      style={{ height: "380vh" }}
+      style={{ height: "340vh" }}
     >
       <div ref={pinRef} className="relative w-full h-[100svh] overflow-hidden">
         <div
