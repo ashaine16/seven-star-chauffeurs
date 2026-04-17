@@ -4,9 +4,19 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import NextImage from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+}
+
+function smoothScrollTo(target: string) {
+  const navOffset = Math.min(Math.max(72, window.innerHeight * 0.09), 108);
+  gsap.to(window, {
+    duration: 1.4,
+    ease: "cubic-bezier(0.16, 1, 0.3, 1)",
+    scrollTo: { y: target, offsetY: navOffset, autoKill: true },
+  });
 }
 
 type Vehicle = {
@@ -468,6 +478,7 @@ function FleetCard({
           </p>
           <a
             href="#reserve"
+            onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}
             className="inline-flex items-center justify-center"
             style={{
               marginTop: "16px",
@@ -619,6 +630,7 @@ function FleetCard({
       <div style={{ paddingTop: "clamp(16px, 2vh, 24px)" }}>
         <a
           href="#reserve"
+          onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}
           className="inline-flex items-center justify-center"
           style={{
             padding: "12px 28px",
