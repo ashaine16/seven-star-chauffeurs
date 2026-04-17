@@ -626,8 +626,8 @@ function FleetCard({
         </div>
       </div>
 
-      {/* Explore button below image */}
-      <div style={{ paddingTop: "clamp(16px, 2vh, 24px)" }}>
+      {/* Explore button below image — aligned with text overlay */}
+      <div style={{ paddingTop: "clamp(16px, 2vh, 24px)", paddingLeft: "clamp(24px, 3.5vw, 48px)" }}>
         <a
           href="#reserve"
           onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}

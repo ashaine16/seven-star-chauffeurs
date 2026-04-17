@@ -113,6 +113,17 @@ export default function Navbar() {
                   textTransform: "uppercase",
                   color: scrolled ? "var(--gold)" : "var(--ivory)",
                   transition: "color 300ms cubic-bezier(0.4,0,0.2,1)",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  padding: "8px 0",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--gold)";
+                  e.currentTarget.style.opacity = "1";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = scrolled ? "var(--gold)" : "var(--ivory)";
+                  e.currentTarget.style.opacity = "1";
                 }}
               >
                 {l.label}
@@ -136,7 +147,17 @@ export default function Navbar() {
             background: scrolled ? "var(--gold)" : "transparent",
             border: "1px solid var(--gold)",
             borderRadius: "2px",
-            transition: "background 300ms, color 300ms",
+            cursor: "pointer",
+            textDecoration: "none",
+            transition: "background 300ms, color 300ms, transform 200ms",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "var(--gold)";
+            e.currentTarget.style.color = "var(--obsidian)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = scrolled ? "var(--gold)" : "transparent";
+            e.currentTarget.style.color = scrolled ? "var(--obsidian)" : "var(--gold)";
           }}
         >
           Reserve
