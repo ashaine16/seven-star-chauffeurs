@@ -220,30 +220,53 @@ export default function Hero() {
       drawAt(frameStateRef.current.exact);
     };
 
-    const renderAt = (progress: number) => {
+    // Lerp-based render loop — GSAP sets target, loop glides toward it
+    let target = 0;
+    let current = 0;
+    let rafId = 0;
+    let ticking = false;
+    const LERP = isMobile ? 0.11 : 0.09;
+    const EPSILON = 0.01;
+
+    const tick = () => {
+      const diff = target - current;
+      if (Math.abs(diff) < EPSILON) {
+        current = target;
+        drawAt(current);
+        ticking = false;
+        return;
+      }
+      current += diff * LERP;
+      frameStateRef.current.exact = current;
+      frameStateRef.current.index = Math.round(current);
+      drawAt(current);
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const setTarget = (progress: number) => {
       const frames = framesRef.current;
       if (!frames.length) return;
-      const exact = progress * (frames.length - 1);
-      frameStateRef.current.exact = exact;
-      frameStateRef.current.index = Math.round(exact);
-      drawAt(exact);
+      target = progress * (frames.length - 1);
+      if (!ticking) {
+        ticking = true;
+        rafId = requestAnimationFrame(tick);
+      }
     };
 
     sizeCanvas();
     window.addEventListener("resize", sizeCanvas, { passive: true });
 
-    // SCROLL CHOREOGRAPHY — 400vh desktop, 300vh mobile
+    // SCROLL CHOREOGRAPHY
     const runway = isMobile ? 120 : 150;
 
     const ctxGsap = gsap.context(() => {
-      // Master pin + frame scrub
       const master = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
           end: `+=${runway}%`,
           pin: pin,
-          scrub: 0.6,
+          scrub: true,
           anticipatePin: 1,
         },
       });
@@ -256,7 +279,7 @@ export default function Hero() {
           duration: 1,
           ease: "none",
           onUpdate() {
-            renderAt(this.targets()[0].p);
+            setTarget(this.targets()[0].p);
           },
         },
         0,
@@ -335,6 +358,7 @@ export default function Hero() {
     }, section);
 
     return () => {
+      cancelAnimationFrame(rafId);
       ctxGsap.revert();
       window.removeEventListener("resize", sizeCanvas);
     };
