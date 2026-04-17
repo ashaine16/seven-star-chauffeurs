@@ -1,482 +1,370 @@
 {
-  "count": 119,
-  "totalBytes": 10240426,
+  "count": 91,
+  "totalBytes": 11286584,
   "frames": [
     {
       "file": "frame_0001.webp",
-      "bytes": 79594
+      "bytes": 114748
     },
     {
       "file": "frame_0002.webp",
-      "bytes": 80090
+      "bytes": 119136
     },
     {
       "file": "frame_0003.webp",
-      "bytes": 80388
+      "bytes": 118380
     },
     {
       "file": "frame_0004.webp",
-      "bytes": 81168
+      "bytes": 119216
     },
     {
       "file": "frame_0005.webp",
-      "bytes": 81674
+      "bytes": 120372
     },
     {
       "file": "frame_0006.webp",
-      "bytes": 82706
+      "bytes": 121960
     },
     {
       "file": "frame_0007.webp",
-      "bytes": 82948
+      "bytes": 122440
     },
     {
       "file": "frame_0008.webp",
-      "bytes": 83130
+      "bytes": 121232
     },
     {
       "file": "frame_0009.webp",
-      "bytes": 83332
+      "bytes": 122474
     },
     {
       "file": "frame_0010.webp",
-      "bytes": 83968
+      "bytes": 122924
     },
     {
       "file": "frame_0011.webp",
-      "bytes": 84192
+      "bytes": 122078
     },
     {
       "file": "frame_0012.webp",
-      "bytes": 84580
+      "bytes": 122544
     },
     {
       "file": "frame_0013.webp",
-      "bytes": 84660
+      "bytes": 122442
     },
     {
       "file": "frame_0014.webp",
-      "bytes": 84992
+      "bytes": 123268
     },
     {
       "file": "frame_0015.webp",
-      "bytes": 85552
+      "bytes": 123302
     },
     {
       "file": "frame_0016.webp",
-      "bytes": 85426
+      "bytes": 119486
     },
     {
       "file": "frame_0017.webp",
-      "bytes": 85956
+      "bytes": 123906
     },
     {
       "file": "frame_0018.webp",
-      "bytes": 85322
+      "bytes": 123528
     },
     {
       "file": "frame_0019.webp",
-      "bytes": 85768
+      "bytes": 122792
     },
     {
       "file": "frame_0020.webp",
-      "bytes": 85910
+      "bytes": 118982
     },
     {
       "file": "frame_0021.webp",
-      "bytes": 85952
+      "bytes": 123414
     },
     {
       "file": "frame_0022.webp",
-      "bytes": 86156
+      "bytes": 123670
     },
     {
       "file": "frame_0023.webp",
-      "bytes": 85898
+      "bytes": 122864
     },
     {
       "file": "frame_0024.webp",
-      "bytes": 85904
+      "bytes": 123266
     },
     {
       "file": "frame_0025.webp",
-      "bytes": 85922
+      "bytes": 123378
     },
     {
       "file": "frame_0026.webp",
-      "bytes": 86136
+      "bytes": 123480
     },
     {
       "file": "frame_0027.webp",
-      "bytes": 85934
+      "bytes": 122110
     },
     {
       "file": "frame_0028.webp",
-      "bytes": 85890
+      "bytes": 122554
     },
     {
       "file": "frame_0029.webp",
-      "bytes": 85942
+      "bytes": 119092
     },
     {
       "file": "frame_0030.webp",
-      "bytes": 85866
+      "bytes": 118620
     },
     {
       "file": "frame_0031.webp",
-      "bytes": 85674
+      "bytes": 120692
     },
     {
       "file": "frame_0032.webp",
-      "bytes": 85444
+      "bytes": 119396
     },
     {
       "file": "frame_0033.webp",
-      "bytes": 85676
+      "bytes": 119786
     },
     {
       "file": "frame_0034.webp",
-      "bytes": 85204
+      "bytes": 119568
     },
     {
       "file": "frame_0035.webp",
-      "bytes": 85570
+      "bytes": 120118
     },
     {
       "file": "frame_0036.webp",
-      "bytes": 85002
+      "bytes": 121232
     },
     {
       "file": "frame_0037.webp",
-      "bytes": 84864
+      "bytes": 120566
     },
     {
       "file": "frame_0038.webp",
-      "bytes": 84872
+      "bytes": 121026
     },
     {
       "file": "frame_0039.webp",
-      "bytes": 85024
+      "bytes": 121202
     },
     {
       "file": "frame_0040.webp",
-      "bytes": 85190
+      "bytes": 121590
     },
     {
       "file": "frame_0041.webp",
-      "bytes": 85254
+      "bytes": 121444
     },
     {
       "file": "frame_0042.webp",
-      "bytes": 84418
+      "bytes": 122220
     },
     {
       "file": "frame_0043.webp",
-      "bytes": 84642
+      "bytes": 126012
     },
     {
       "file": "frame_0044.webp",
-      "bytes": 84588
+      "bytes": 126300
     },
     {
       "file": "frame_0045.webp",
-      "bytes": 84832
+      "bytes": 126564
     },
     {
       "file": "frame_0046.webp",
-      "bytes": 84892
+      "bytes": 126556
     },
     {
       "file": "frame_0047.webp",
-      "bytes": 84650
+      "bytes": 126920
     },
     {
       "file": "frame_0048.webp",
-      "bytes": 84430
+      "bytes": 127220
     },
     {
       "file": "frame_0049.webp",
-      "bytes": 84564
+      "bytes": 126606
     },
     {
       "file": "frame_0050.webp",
-      "bytes": 84812
+      "bytes": 127094
     },
     {
       "file": "frame_0051.webp",
-      "bytes": 85098
+      "bytes": 126318
     },
     {
       "file": "frame_0052.webp",
-      "bytes": 84812
+      "bytes": 127088
     },
     {
       "file": "frame_0053.webp",
-      "bytes": 84828
+      "bytes": 127520
     },
     {
       "file": "frame_0054.webp",
-      "bytes": 85090
+      "bytes": 126300
     },
     {
       "file": "frame_0055.webp",
-      "bytes": 85212
+      "bytes": 126558
     },
     {
       "file": "frame_0056.webp",
-      "bytes": 85550
+      "bytes": 127186
     },
     {
       "file": "frame_0057.webp",
-      "bytes": 85930
+      "bytes": 126982
     },
     {
       "file": "frame_0058.webp",
-      "bytes": 85946
+      "bytes": 126870
     },
     {
       "file": "frame_0059.webp",
-      "bytes": 86066
+      "bytes": 126440
     },
     {
       "file": "frame_0060.webp",
-      "bytes": 86444
+      "bytes": 126446
     },
     {
       "file": "frame_0061.webp",
-      "bytes": 85528
+      "bytes": 127064
     },
     {
       "file": "frame_0062.webp",
-      "bytes": 86496
+      "bytes": 126122
     },
     {
       "file": "frame_0063.webp",
-      "bytes": 86550
+      "bytes": 128306
     },
     {
       "file": "frame_0064.webp",
-      "bytes": 87052
+      "bytes": 125460
     },
     {
       "file": "frame_0065.webp",
-      "bytes": 86866
+      "bytes": 126716
     },
     {
       "file": "frame_0066.webp",
-      "bytes": 87226
+      "bytes": 126494
     },
     {
       "file": "frame_0067.webp",
-      "bytes": 88298
+      "bytes": 125518
     },
     {
       "file": "frame_0068.webp",
-      "bytes": 88264
+      "bytes": 126164
     },
     {
       "file": "frame_0069.webp",
-      "bytes": 87884
+      "bytes": 125908
     },
     {
       "file": "frame_0070.webp",
-      "bytes": 87158
+      "bytes": 126182
     },
     {
       "file": "frame_0071.webp",
-      "bytes": 88368
+      "bytes": 126146
     },
     {
       "file": "frame_0072.webp",
-      "bytes": 87766
+      "bytes": 127246
     },
     {
       "file": "frame_0073.webp",
-      "bytes": 87996
+      "bytes": 125198
     },
     {
       "file": "frame_0074.webp",
-      "bytes": 88114
+      "bytes": 125390
     },
     {
       "file": "frame_0075.webp",
-      "bytes": 87886
+      "bytes": 126018
     },
     {
       "file": "frame_0076.webp",
-      "bytes": 87402
+      "bytes": 125360
     },
     {
       "file": "frame_0077.webp",
-      "bytes": 88040
+      "bytes": 125018
     },
     {
       "file": "frame_0078.webp",
-      "bytes": 87500
+      "bytes": 125114
     },
     {
       "file": "frame_0079.webp",
-      "bytes": 87538
+      "bytes": 125374
     },
     {
       "file": "frame_0080.webp",
-      "bytes": 87664
+      "bytes": 125872
     },
     {
       "file": "frame_0081.webp",
-      "bytes": 87492
+      "bytes": 126248
     },
     {
       "file": "frame_0082.webp",
-      "bytes": 87390
+      "bytes": 125834
     },
     {
       "file": "frame_0083.webp",
-      "bytes": 86916
+      "bytes": 125526
     },
     {
       "file": "frame_0084.webp",
-      "bytes": 87318
+      "bytes": 126254
     },
     {
       "file": "frame_0085.webp",
-      "bytes": 86754
+      "bytes": 126098
     },
     {
       "file": "frame_0086.webp",
-      "bytes": 87880
+      "bytes": 127088
     },
     {
       "file": "frame_0087.webp",
-      "bytes": 87572
+      "bytes": 127144
     },
     {
       "file": "frame_0088.webp",
-      "bytes": 86828
+      "bytes": 125644
     },
     {
       "file": "frame_0089.webp",
-      "bytes": 86748
+      "bytes": 125996
     },
     {
       "file": "frame_0090.webp",
-      "bytes": 86752
+      "bytes": 126076
     },
     {
       "file": "frame_0091.webp",
-      "bytes": 87202
-    },
-    {
-      "file": "frame_0092.webp",
-      "bytes": 86904
-    },
-    {
-      "file": "frame_0093.webp",
-      "bytes": 86842
-    },
-    {
-      "file": "frame_0094.webp",
-      "bytes": 86972
-    },
-    {
-      "file": "frame_0095.webp",
-      "bytes": 87496
-    },
-    {
-      "file": "frame_0096.webp",
-      "bytes": 87108
-    },
-    {
-      "file": "frame_0097.webp",
-      "bytes": 86906
-    },
-    {
-      "file": "frame_0098.webp",
-      "bytes": 86788
-    },
-    {
-      "file": "frame_0099.webp",
-      "bytes": 86968
-    },
-    {
-      "file": "frame_0100.webp",
-      "bytes": 87660
-    },
-    {
-      "file": "frame_0101.webp",
-      "bytes": 88010
-    },
-    {
-      "file": "frame_0102.webp",
-      "bytes": 87842
-    },
-    {
-      "file": "frame_0103.webp",
-      "bytes": 88142
-    },
-    {
-      "file": "frame_0104.webp",
-      "bytes": 88104
-    },
-    {
-      "file": "frame_0105.webp",
-      "bytes": 87430
-    },
-    {
-      "file": "frame_0106.webp",
-      "bytes": 86818
-    },
-    {
-      "file": "frame_0107.webp",
-      "bytes": 87966
-    },
-    {
-      "file": "frame_0108.webp",
-      "bytes": 87704
-    },
-    {
-      "file": "frame_0109.webp",
-      "bytes": 87840
-    },
-    {
-      "file": "frame_0110.webp",
-      "bytes": 87598
-    },
-    {
-      "file": "frame_0111.webp",
-      "bytes": 87224
-    },
-    {
-      "file": "frame_0112.webp",
-      "bytes": 87294
-    },
-    {
-      "file": "frame_0113.webp",
-      "bytes": 87428
-    },
-    {
-      "file": "frame_0114.webp",
-      "bytes": 87374
-    },
-    {
-      "file": "frame_0115.webp",
-      "bytes": 87486
-    },
-    {
-      "file": "frame_0116.webp",
-      "bytes": 87628
-    },
-    {
-      "file": "frame_0117.webp",
-      "bytes": 87354
-    },
-    {
-      "file": "frame_0118.webp",
-      "bytes": 86560
-    },
-    {
-      "file": "frame_0119.webp",
-      "bytes": 86998
+      "bytes": 126528
     }
   ]
 }

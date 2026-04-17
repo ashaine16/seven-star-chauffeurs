@@ -205,8 +205,7 @@ export default function Hero() {
     sizeCanvas();
     window.addEventListener("resize", sizeCanvas, { passive: true });
 
-    // SCROLL CHOREOGRAPHY — 400vh desktop, 300vh mobile
-    const runway = isMobile ? 120 : 150;
+    const runway = isMobile ? 90 : 120;
 
     const ctxGsap = gsap.context(() => {
       // Master pin + frame scrub
@@ -318,7 +317,7 @@ export default function Hero() {
       ref={sectionRef}
       aria-label="Seven Star Chauffeurs — cinematic door opening"
       className="relative w-full bg-[var(--obsidian)]"
-      style={{ height: `${isMobile ? 220 : 260}vh` }}
+      style={{ height: `${isMobile ? 170 : 200}vh` }}
     >
       {/* Pinned stage */}
       <div
