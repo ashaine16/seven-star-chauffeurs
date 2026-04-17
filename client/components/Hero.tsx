@@ -151,7 +151,7 @@ export default function Hero() {
       return { w, h };
     };
 
-    const anchorX = isMobile ? 0.62 : 0.5;
+    const anchorX = isMobile ? 0.82 : 0.5;
     const anchorY = isMobile ? 0.0 : 0.5;
 
     const drawFrame = (index: number) => {

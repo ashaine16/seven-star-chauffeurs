@@ -392,7 +392,7 @@ function FleetCard({
       }
     : {
         width: "100%",
-        aspectRatio: "4 / 5",
+        aspectRatio: "3 / 2",
         position: "relative",
         overflow: "hidden",
       };
@@ -425,7 +425,7 @@ function FleetCard({
             sizes={isDesktop ? "55vw" : "100vw"}
             draggable={false}
             style={{
-              objectFit: "contain",
+              objectFit: isDesktop ? "contain" : "cover",
               objectPosition: "center",
               userSelect: "none",
             }}
@@ -434,6 +434,24 @@ function FleetCard({
           <PlaceholderMark label={`${vehicle.make} ${vehicle.model}`} />
         )}
       </div>
+
+      {/* Bottom gradient scrim for text legibility on mobile */}
+      {!isDesktop && (
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "65%",
+            background:
+              "linear-gradient(to top, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.5) 40%, transparent 100%)",
+            pointerEvents: "none",
+            zIndex: 1,
+          }}
+        />
+      )}
 
       <div
         data-fleet-text
