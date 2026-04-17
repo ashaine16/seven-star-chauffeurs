@@ -365,7 +365,7 @@ function DesktopHero() {
     const sizeCanvas = () => {
       const { w, h } = getSize();
       if (w === 0 || h === 0) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
       canvas.style.width = "100%";
@@ -401,7 +401,7 @@ function DesktopHero() {
           start: "top top",
           end: `+=${runway}%`,
           pin: pin,
-          scrub: 1.5,
+          scrub: 0.8,
           anticipatePin: 1,
         },
       });
