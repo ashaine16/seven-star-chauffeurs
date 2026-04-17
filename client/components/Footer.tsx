@@ -326,20 +326,6 @@ export default function Footer() {
               gap: "clamp(20px, 3vw, 32px)",
             }}
           >
-            <nav
-              aria-label="Footer navigation"
-              className="flex flex-wrap"
-              style={{
-                alignItems: "center",
-                gap: "clamp(14px, 2.6vw, 32px)",
-              }}
-            >
-              {SITE_LINKS.map((l) => (
-                <SmallLink key={l.href} href={l.href}>
-                  {l.label}
-                </SmallLink>
-              ))}
-            </nav>
             <BackToTop />
           </div>
         </div>

@@ -191,7 +191,14 @@ function MobileHero() {
         fill
         priority
         sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "70% center" }}
+        style={{ objectFit: "cover", objectPosition: "70% center", filter: "brightness(0.82) contrast(1.06) saturate(1.1)" }}
+      />
+
+      {/* Subtle dark tint to compensate for video-to-still quality */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "rgba(5,5,5,0.18)" }}
       />
 
       {/* Vignette */}

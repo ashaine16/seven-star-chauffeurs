@@ -351,7 +351,7 @@ function ReserveForm() {
           "0 0 0 1px rgba(5,5,5,0.3) inset, 0 30px 60px -20px rgba(0,0,0,0.55)",
       }}
     >
-      <SectionHeading index="01" label="Your details" />
+      <SectionHeading index="01" label="Your Details" />
       <div
         className="grid md:grid-cols-2"
         style={{ gap: "clamp(18px, 2.2vw, 28px)" }}
@@ -398,7 +398,7 @@ function ReserveForm() {
       </div>
 
       <Divider />
-      <SectionHeading index="02" label="The engagement" />
+      <SectionHeading index="02" label="The Engagement" />
       <div
         className="grid md:grid-cols-2"
         style={{ gap: "clamp(18px, 2.2vw, 28px)" }}
@@ -455,7 +455,7 @@ function ReserveForm() {
       <Divider />
       <SectionHeading
         index="04"
-        label="Vehicle preference"
+        label="Vehicle Preference"
         hint="Optional. We'll recommend if you're unsure."
       />
       <ChipGroup
@@ -467,7 +467,7 @@ function ReserveForm() {
       <Divider />
       <SectionHeading
         index="05"
-        label="Itinerary notes"
+        label="Itinerary Notes"
         hint="Occasion, stopovers, special requests"
       />
       <Field
