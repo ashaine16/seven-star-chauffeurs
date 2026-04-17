@@ -42,12 +42,12 @@ function HeroContent({ onReserve, onFleet }: { onReserve: () => void; onFleet: (
       className="flex flex-col items-center"
       style={{
         padding: "clamp(24px, 3vw, 44px) clamp(28px, 4vw, 64px) clamp(20px, 2.4vw, 32px)",
-        background: "rgba(5,5,5,0.55)",
-        backdropFilter: "blur(22px) saturate(1.1)",
-        WebkitBackdropFilter: "blur(22px) saturate(1.1)",
-        border: "1px solid rgba(197,165,90,0.22)",
+        background: "linear-gradient(180deg, rgba(5,5,5,0.35) 0%, rgba(5,5,5,0.5) 100%)",
+        backdropFilter: "blur(14px) saturate(1.15)",
+        WebkitBackdropFilter: "blur(14px) saturate(1.15)",
+        border: "1px solid rgba(197,165,90,0.15)",
         boxShadow:
-          "0 0 0 1px rgba(5,5,5,0.4) inset, 0 30px 60px -20px rgba(0,0,0,0.55), 0 0 80px rgba(212,160,74,0.06)",
+          "0 30px 60px -20px rgba(0,0,0,0.4), 0 0 80px rgba(212,160,74,0.04)",
         maxWidth: "min(560px, 90vw)",
         width: "100%",
         position: "relative",
@@ -191,14 +191,14 @@ function MobileHero() {
         fill
         priority
         sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "70% center", filter: "brightness(0.82) contrast(1.06) saturate(1.1)" }}
+        style={{ objectFit: "cover", objectPosition: "70% center", filter: "brightness(0.93) contrast(1.08) saturate(1.2)" }}
       />
 
-      {/* Subtle dark tint to compensate for video-to-still quality */}
+      {/* Warm color grade — subtle gold wash to add richness */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "rgba(5,5,5,0.18)" }}
+        style={{ background: "rgba(212,160,74,0.06)", mixBlendMode: "color" }}
       />
 
       {/* Vignette */}
@@ -207,7 +207,7 @@ function MobileHero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 20%, rgba(5,5,5,0.5) 75%, rgba(5,5,5,0.85) 100%)",
+            "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 25%, rgba(5,5,5,0.45) 75%, rgba(5,5,5,0.8) 100%)",
         }}
       />
 
