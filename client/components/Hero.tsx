@@ -279,7 +279,7 @@ function DesktopHero() {
   const darkScrimRef = useRef<HTMLDivElement>(null);
 
   const framesRef = useRef<HTMLImageElement[]>([]);
-  const progressRef = useRef(0);
+  const frameStateRef = useRef({ index: 0, rafPending: false });
 
   const [loadProgress, setLoadProgress] = useState(0);
   const [ready, setReady] = useState(false);
@@ -346,54 +346,20 @@ function DesktopHero() {
       return { w, h };
     };
 
-    /* Track last drawn frame to skip redundant redraws */
-    let lastDrawnFloat = -1;
-
-    /* Crossfade-capable frame renderer: blends frame A and B by fractional t */
-    const drawBlended = (floatIdx: number) => {
-      // Skip if we'd draw the exact same blend (within sub-pixel tolerance)
-      if (Math.abs(floatIdx - lastDrawnFloat) < 0.005) return;
-      lastDrawnFloat = floatIdx;
-
+    const drawFrame = (index: number) => {
       const frames = framesRef.current;
       if (!frames.length) return;
-      const last = frames.length - 1;
-      const clamped = Math.max(0, Math.min(floatIdx, last));
-      const lo = Math.floor(clamped);
-      const hi = Math.min(lo + 1, last);
-      const t = clamped - lo;
-
-      let imgLo: HTMLImageElement | undefined = frames[lo];
-      for (let i = lo; i >= 0 && !imgLo; i--) imgLo = frames[i];
-      if (!imgLo) return;
-
+      const clamped = Math.max(0, Math.min(index, frames.length - 1));
+      let img: HTMLImageElement | undefined = frames[clamped];
+      for (let i = clamped; i >= 0 && !img; i--) img = frames[i];
+      if (!img) return;
       const { w: vw, h: vh } = getSize();
-
-      if (t < 0.01 || lo === hi) {
-        ctx.drawImage(imgLo, 0, 0, imgLo.width, imgLo.height, 
-          ...coverFit(imgLo.width, imgLo.height, vw, vh));
-      } else {
-        let imgHi: HTMLImageElement | undefined = frames[hi];
-        if (!imgHi) {
-          ctx.drawImage(imgLo, 0, 0, imgLo.width, imgLo.height,
-            ...coverFit(imgLo.width, imgLo.height, vw, vh));
-        } else {
-          const [dx, dy, dw, dh] = coverFit(imgLo.width, imgLo.height, vw, vh);
-          ctx.globalAlpha = 1;
-          ctx.drawImage(imgLo, 0, 0, imgLo.width, imgLo.height, dx, dy, dw, dh);
-          ctx.globalAlpha = t;
-          ctx.drawImage(imgHi, 0, 0, imgHi.width, imgHi.height, dx, dy, dw, dh);
-          ctx.globalAlpha = 1;
-        }
-      }
-    };
-
-    /* Cover-fit helper: returns [dx, dy, dw, dh] */
-    const coverFit = (iw: number, ih: number, vw: number, vh: number): [number, number, number, number] => {
-      const scale = Math.max(vw / iw, vh / ih);
-      const w = iw * scale;
-      const h = ih * scale;
-      return [(vw - w) / 2, (vh - h) / 2, w, h];
+      const scale = Math.max(vw / img.width, vh / img.height);
+      const w = img.width * scale;
+      const h = img.height * scale;
+      ctx.fillStyle = "#050505";
+      ctx.fillRect(0, 0, vw, vh);
+      ctx.drawImage(img, (vw - w) / 2, (vh - h) / 2, w, h);
     };
 
     const sizeCanvas = () => {
@@ -407,21 +373,26 @@ function DesktopHero() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
-      drawBlended(progressRef.current * (framesRef.current.length - 1));
+      drawFrame(frameStateRef.current.index);
     };
 
-    /* Render directly in GSAP onUpdate (already inside rAF) — no double-buffering lag */
     const renderAt = (progress: number) => {
-      progressRef.current = progress;
       const frames = framesRef.current;
       if (!frames.length) return;
-      drawBlended(progress * (frames.length - 1));
+      const idx = Math.round(progress * (frames.length - 1));
+      frameStateRef.current.index = idx;
+      if (frameStateRef.current.rafPending) return;
+      frameStateRef.current.rafPending = true;
+      requestAnimationFrame(() => {
+        frameStateRef.current.rafPending = false;
+        drawFrame(frameStateRef.current.index);
+      });
     };
 
     sizeCanvas();
     window.addEventListener("resize", sizeCanvas, { passive: true });
 
-    const runway = 240;
+    const runway = 120;
 
     const ctxGsap = gsap.context(() => {
       const master = gsap.timeline({
@@ -430,7 +401,7 @@ function DesktopHero() {
           start: "top top",
           end: `+=${runway}%`,
           pin: pin,
-          scrub: 0.6,
+          scrub: 1.5,
           anticipatePin: 1,
         },
       });
@@ -448,19 +419,19 @@ function DesktopHero() {
 
       if (contentRef.current) {
         const items = contentRef.current.querySelectorAll<HTMLElement>("[data-hero-layer]");
-        master.to(items, { opacity: 0, y: -30, duration: 30 / runway, ease: "power2.in" }, 5 / runway);
+        master.to(items, { opacity: 0, y: -30, duration: (40 - 10) / runway, ease: "power2.in" }, 10 / runway);
       }
 
       if (goldWashRef.current) {
-        master.to(goldWashRef.current, { opacity: 1, duration: 100 / runway, ease: "power2.out" }, 30 / runway);
+        master.to(goldWashRef.current, { opacity: 1, duration: (120 - 30) / runway, ease: "power2.out" }, 30 / runway);
       }
 
       if (canvasWrapRef.current) {
-        master.to(canvasWrapRef.current, { scale: 1.06, duration: (runway - 50) / runway, ease: "power2.out" }, 50 / runway);
+        master.to(canvasWrapRef.current, { scale: 1.12, duration: 1 - 70 / runway, ease: "power2.out" }, 70 / runway);
       }
 
       if (darkScrimRef.current) {
-        master.to(darkScrimRef.current, { opacity: 0.35, duration: (runway - 190) / runway, ease: "power1.in" }, 190 / runway);
+        master.to(darkScrimRef.current, { opacity: 0.35, duration: 1 - 110 / runway, ease: "power1.in" }, 110 / runway);
       }
 
       if (darkScrimRef.current && canvasWrapRef.current) {
@@ -470,7 +441,7 @@ function DesktopHero() {
           scrollTrigger: { trigger: section, start: `top+=${runway}% top`, end: "bottom top", scrub: true },
         });
         gsap.to(canvasWrapRef.current, {
-          yPercent: -5,
+          yPercent: -8,
           ease: "none",
           scrollTrigger: { trigger: section, start: `top+=${runway}% top`, end: "bottom top", scrub: true },
         });
@@ -488,7 +459,7 @@ function DesktopHero() {
       ref={sectionRef}
       aria-label="Seven Star Chauffeurs — cinematic door opening"
       className="relative w-full bg-[var(--obsidian)]"
-      style={{ height: "340vh" }}
+      style={{ height: "200vh" }}
     >
       <div ref={pinRef} className="relative w-full h-[100svh] overflow-hidden">
         <div
