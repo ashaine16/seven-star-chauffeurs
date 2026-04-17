@@ -279,9 +279,10 @@ function ServiceBlock({
         style={{
           position: "relative",
           aspectRatio: "16 / 10",
-          minHeight: "clamp(220px, 35vh, 440px)",
+          minHeight: "clamp(200px, 30vh, 440px)",
           overflow: "hidden",
           willChange: "transform, opacity",
+          borderRadius: "2px",
         }}
       >
         {service.image ? (
@@ -299,9 +300,10 @@ function ServiceBlock({
         ) : (
           <ServicePlaceholder label={service.imageAlt} />
         )}
-        {/* Edge fade toward the text side for a seamless bleed */}
+        {/* Edge fade toward the text side — desktop only */}
         <div
           aria-hidden
+          className="hidden md:block"
           style={{
             position: "absolute",
             inset: 0,

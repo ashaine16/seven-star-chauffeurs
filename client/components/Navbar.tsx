@@ -8,11 +8,10 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollToPlugin);
 
 const LINKS = [
-  { label: "Fleet", href: "#fleet" },
+  { label: "The Fleet", href: "#fleet" },
   { label: "Services", href: "#services" },
-  { label: "Experience", href: "#experience" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Reserve", href: "#reserve" },
+  { label: "The Experience", href: "#experience" },
+  { label: "Enquiries", href: "#faq" },
 ];
 
 function smoothScrollTo(target: string, onDone?: () => void) {
@@ -202,50 +201,86 @@ export default function Navbar() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(5,5,5,0.97)",
+            background: "rgba(5,5,5,0.98)",
             backdropFilter: "blur(24px)",
             WebkitBackdropFilter: "blur(24px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            gap: "clamp(28px, 5vh, 44px)",
             zIndex: -1,
+            padding: "0 clamp(32px, 8vw, 64px)",
           }}
         >
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={(e) => handleNavClick(e, l.href)}
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 400,
-                fontSize: "clamp(24px, 4vw, 32px)",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--ivory)",
-                transition: "color 300ms",
-              }}
-            >
-              {l.label}
-            </a>
-          ))}
+          <nav
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "0",
+              width: "100%",
+              maxWidth: "320px",
+            }}
+          >
+            {LINKS.map((l, i) => (
+              <div key={l.href} style={{ width: "100%", textAlign: "center" }}>
+                <a
+                  href={l.href}
+                  onClick={(e) => handleNavClick(e, l.href)}
+                  style={{
+                    display: "block",
+                    padding: "clamp(16px, 2.5vh, 22px) 0",
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 400,
+                    fontSize: "clamp(20px, 3.5vw, 28px)",
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "var(--ivory)",
+                    textDecoration: "none",
+                  }}
+                >
+                  {l.label}
+                </a>
+                {i < LINKS.length - 1 && (
+                  <div
+                    aria-hidden
+                    style={{
+                      height: "1px",
+                      width: "40px",
+                      margin: "0 auto",
+                      background: "rgba(212,160,74,0.25)",
+                    }}
+                  />
+                )}
+              </div>
+            ))}
+          </nav>
+
+          <div
+            aria-hidden
+            style={{
+              width: "60px",
+              height: "1px",
+              background: "var(--gold)",
+              margin: "clamp(24px, 4vh, 36px) auto",
+            }}
+          />
+
           <a
             href="#reserve"
             onClick={(e) => handleNavClick(e, "#reserve")}
             style={{
-              marginTop: "clamp(8px, 2vh, 16px)",
-              padding: "14px 36px",
+              padding: "16px 44px",
               fontFamily: "var(--font-sans)",
               fontWeight: 500,
-              fontSize: "12px",
-              letterSpacing: "0.28em",
+              fontSize: "11px",
+              letterSpacing: "0.3em",
               textTransform: "uppercase",
               color: "var(--obsidian)",
               background: "var(--gold)",
               border: "1px solid var(--gold)",
               borderRadius: "2px",
+              textDecoration: "none",
             }}
           >
             Reserve Now

@@ -333,7 +333,7 @@ export default function Fleet() {
                   style={{
                     flex: "0 0 auto",
                     width: "1px",
-                    height: "36vh",
+                    height: "clamp(300px, 45svh, 450px)",
                     background:
                       "linear-gradient(to bottom, transparent 0%, rgba(212,160,74,0.42) 25%, rgba(212,160,74,0.42) 75%, transparent 100%)",
                   }}
@@ -496,107 +496,132 @@ function FleetCard({
       style={{
         flex: "0 0 auto",
         width: "clamp(520px, 55vw, 860px)",
-        height: "clamp(460px, 68svh, 680px)",
-        position: "relative",
-        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       aria-label={`${vehicle.make} ${vehicle.model}`}
     >
+      {/* Image with text overlay */}
       <div
-        data-fleet-image
         style={{
-          position: "absolute",
-          inset: 0,
-          transition: "filter 600ms cubic-bezier(0.4,0,0.2,1)",
-          filter: hovered ? "brightness(1)" : "brightness(0.85)",
-          willChange: "transform, filter",
-          pointerEvents: "none",
+          position: "relative",
+          height: "clamp(400px, 58svh, 580px)",
+          overflow: "hidden",
         }}
       >
-        {vehicle.image ? (
-          <NextImage
-            src={vehicle.image}
-            alt={`${vehicle.make} ${vehicle.model}`}
-            fill
-            priority={index < 2}
-            sizes="55vw"
-            draggable={false}
-            style={{ objectFit: "contain", objectPosition: "center", userSelect: "none" }}
-          />
-        ) : (
-          <PlaceholderMark label={`${vehicle.make} ${vehicle.model}`} />
-        )}
-      </div>
+        <div
+          data-fleet-image
+          style={{
+            position: "absolute",
+            inset: 0,
+            transition: "filter 600ms cubic-bezier(0.4,0,0.2,1)",
+            filter: hovered ? "brightness(1)" : "brightness(0.85)",
+            willChange: "transform, filter",
+            pointerEvents: "none",
+          }}
+        >
+          {vehicle.image ? (
+            <NextImage
+              src={vehicle.image}
+              alt={`${vehicle.make} ${vehicle.model}`}
+              fill
+              priority={index < 2}
+              sizes="55vw"
+              draggable={false}
+              style={{ objectFit: "contain", objectPosition: "center", userSelect: "none" }}
+            />
+          ) : (
+            <PlaceholderMark label={`${vehicle.make} ${vehicle.model}`} />
+          )}
+        </div>
 
-      <div
-        data-fleet-text
-        style={{
-          position: "absolute",
-          left: "clamp(24px, 3.5vw, 56px)",
-          bottom: "clamp(24px, 5vh, 48px)",
-          maxWidth: "min(460px, 70%)",
-          zIndex: 2,
-          opacity: 0,
-        }}
-      >
+        {/* Bottom gradient for text legibility */}
         <div
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontWeight: 500,
-            fontSize: "11px",
-            letterSpacing: "0.5em",
-            color: "var(--gold)",
-            textTransform: "uppercase",
-          }}
-        >
-          {vehicle.make}
-        </div>
-        <div
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 400,
-            fontSize: "clamp(22px, 2.4vw, 28px)",
-            color: "var(--ivory)",
-            marginTop: "10px",
-            lineHeight: 1.15,
-            letterSpacing: "0.02em",
-          }}
-        >
-          {vehicle.model}
-        </div>
-        <div
-          data-fleet-line
           aria-hidden
           style={{
-            marginTop: "18px",
-            height: "1px",
-            width: 0,
-            maxWidth: hovered ? 120 : 60,
-            background: "var(--gold)",
-            transition: "max-width 500ms cubic-bezier(0.4,0,0.2,1)",
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: "60%",
+            background: "linear-gradient(to top, rgba(5,5,5,0.7) 0%, transparent 100%)",
+            pointerEvents: "none",
           }}
         />
-        <p
+
+        <div
+          data-fleet-text
           style={{
-            marginTop: "18px",
-            color: "var(--chrome)",
-            fontFamily: "var(--font-sans)",
-            fontSize: "14px",
-            lineHeight: 1.7,
-            letterSpacing: "0.015em",
-            maxWidth: "44ch",
+            position: "absolute",
+            left: "clamp(24px, 3.5vw, 48px)",
+            bottom: "clamp(20px, 3vh, 36px)",
+            maxWidth: "min(460px, 75%)",
+            zIndex: 2,
+            opacity: 0,
           }}
         >
-          {vehicle.description}
-        </p>
+          <div
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontWeight: 500,
+              fontSize: "11px",
+              letterSpacing: "0.5em",
+              color: "var(--gold)",
+              textTransform: "uppercase",
+            }}
+          >
+            {vehicle.make}
+          </div>
+          <div
+            style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 400,
+              fontSize: "clamp(22px, 2.4vw, 28px)",
+              color: "var(--ivory)",
+              marginTop: "8px",
+              lineHeight: 1.15,
+              letterSpacing: "0.02em",
+            }}
+          >
+            {vehicle.model}
+          </div>
+          <div
+            data-fleet-line
+            aria-hidden
+            style={{
+              marginTop: "14px",
+              height: "1px",
+              width: 0,
+              maxWidth: hovered ? 120 : 60,
+              background: "var(--gold)",
+              transition: "max-width 500ms cubic-bezier(0.4,0,0.2,1)",
+            }}
+          />
+          <p
+            style={{
+              marginTop: "14px",
+              color: "var(--chrome)",
+              fontFamily: "var(--font-sans)",
+              fontSize: "13px",
+              lineHeight: 1.65,
+              letterSpacing: "0.015em",
+              maxWidth: "44ch",
+            }}
+          >
+            {vehicle.description}
+          </p>
+        </div>
+      </div>
+
+      {/* Explore button below image */}
+      <div style={{ paddingTop: "clamp(16px, 2vh, 24px)" }}>
         <a
           href="#reserve"
           className="inline-flex items-center justify-center"
           style={{
-            marginTop: "24px",
-            padding: "12px 26px",
+            padding: "12px 28px",
             fontFamily: "var(--font-sans)",
             fontWeight: 500,
             fontSize: "11px",
