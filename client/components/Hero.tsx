@@ -47,7 +47,7 @@ export default function Hero() {
   const darkScrimRef = useRef<HTMLDivElement>(null);
 
   const framesRef = useRef<HTMLImageElement[]>([]);
-  const frameStateRef = useRef({ exact: 0, index: 0 });
+  const frameStateRef = useRef({ index: 0, rafPending: false });
 
   const [loadProgress, setLoadProgress] = useState(0);
   const [ready, setReady] = useState(false);
@@ -151,56 +151,25 @@ export default function Hero() {
       return { w, h };
     };
 
-    const findLoaded = (idx: number): HTMLImageElement | undefined => {
-      const frames = framesRef.current;
-      let img = frames[idx];
-      for (let i = idx; i >= 0 && !img; i--) img = frames[i];
-      return img;
-    };
+    const anchorX = isMobile ? 0.62 : 0.5;
+    const anchorY = isMobile ? 0.0 : 0.5;
 
-    const coverDraw = (
-      img: HTMLImageElement,
-      vw: number,
-      vh: number,
-      anchorX = 0.5,
-      anchorY = 0.5,
-    ) => {
+    const drawFrame = (index: number) => {
+      const frames = framesRef.current;
+      if (!frames.length) return;
+      const clamped = Math.max(0, Math.min(index, frames.length - 1));
+      let img: HTMLImageElement | undefined = frames[clamped];
+      for (let i = clamped; i >= 0 && !img; i--) img = frames[i];
+      if (!img) return;
+      const { w: vw, h: vh } = getSize();
       const scale = Math.max(vw / img.width, vh / img.height);
       const w = img.width * scale;
       const h = img.height * scale;
       const x = (vw - w) * anchorX;
       const y = (vh - h) * anchorY;
-      ctx.drawImage(img, x, y, w, h);
-    };
-
-    const ax = isMobile ? 0.62 : 0.5;
-    const ay = isMobile ? 0.0 : 0.5;
-
-    const drawAt = (exactIdx: number) => {
-      const frames = framesRef.current;
-      if (!frames.length) return;
-      const last = frames.length - 1;
-      const lo = Math.max(0, Math.min(Math.floor(exactIdx), last));
-      const hi = Math.min(lo + 1, last);
-      const frac = exactIdx - lo;
-
-      const imgLo = findLoaded(lo);
-      if (!imgLo) return;
-
-      const { w: vw, h: vh } = getSize();
-      ctx.globalAlpha = 1;
       ctx.fillStyle = "#050505";
       ctx.fillRect(0, 0, vw, vh);
-      coverDraw(imgLo, vw, vh, ax, ay);
-
-      if (frac > 0.005 && hi !== lo) {
-        const imgHi = findLoaded(hi);
-        if (imgHi && imgHi !== imgLo) {
-          ctx.globalAlpha = frac;
-          coverDraw(imgHi, vw, vh, ax, ay);
-          ctx.globalAlpha = 1;
-        }
-      }
+      ctx.drawImage(img, x, y, w, h);
     };
 
     const sizeCanvas = () => {
@@ -217,56 +186,37 @@ export default function Hero() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
-      drawAt(frameStateRef.current.exact);
+      drawFrame(frameStateRef.current.index);
     };
 
-    // Lerp-based render loop — GSAP sets target, loop glides toward it
-    let target = 0;
-    let current = 0;
-    let rafId = 0;
-    let ticking = false;
-    const LERP = isMobile ? 0.11 : 0.09;
-    const EPSILON = 0.01;
-
-    const tick = () => {
-      const diff = target - current;
-      if (Math.abs(diff) < EPSILON) {
-        current = target;
-        drawAt(current);
-        ticking = false;
-        return;
-      }
-      current += diff * LERP;
-      frameStateRef.current.exact = current;
-      frameStateRef.current.index = Math.round(current);
-      drawAt(current);
-      rafId = requestAnimationFrame(tick);
-    };
-
-    const setTarget = (progress: number) => {
+    const renderAt = (progress: number) => {
       const frames = framesRef.current;
       if (!frames.length) return;
-      target = progress * (frames.length - 1);
-      if (!ticking) {
-        ticking = true;
-        rafId = requestAnimationFrame(tick);
-      }
+      const idx = Math.round(progress * (frames.length - 1));
+      frameStateRef.current.index = idx;
+      if (frameStateRef.current.rafPending) return;
+      frameStateRef.current.rafPending = true;
+      requestAnimationFrame(() => {
+        frameStateRef.current.rafPending = false;
+        drawFrame(frameStateRef.current.index);
+      });
     };
 
     sizeCanvas();
     window.addEventListener("resize", sizeCanvas, { passive: true });
 
-    // SCROLL CHOREOGRAPHY
+    // SCROLL CHOREOGRAPHY — 400vh desktop, 300vh mobile
     const runway = isMobile ? 120 : 150;
 
     const ctxGsap = gsap.context(() => {
+      // Master pin + frame scrub
       const master = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
           end: `+=${runway}%`,
           pin: pin,
-          scrub: true,
+          scrub: 1.5,
           anticipatePin: 1,
         },
       });
@@ -279,7 +229,7 @@ export default function Hero() {
           duration: 1,
           ease: "none",
           onUpdate() {
-            setTarget(this.targets()[0].p);
+            renderAt(this.targets()[0].p);
           },
         },
         0,
@@ -358,7 +308,6 @@ export default function Hero() {
     }, section);
 
     return () => {
-      cancelAnimationFrame(rafId);
       ctxGsap.revert();
       window.removeEventListener("resize", sizeCanvas);
     };
