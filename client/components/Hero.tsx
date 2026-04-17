@@ -92,7 +92,7 @@ function HeroContent({ onReserve, onFleet }: { onReserve: () => void; onFleet: (
       </div>
 
       <h1
-        className="page-in-text text-center"
+        className="page-in-heading text-center"
         style={{
           fontFamily: "var(--font-display)",
           fontWeight: 600,
@@ -110,7 +110,7 @@ function HeroContent({ onReserve, onFleet }: { onReserve: () => void; onFleet: (
       </h1>
 
       <div
-        className="page-in-text text-center"
+        className="page-in-subhead text-center"
         style={{
           fontFamily: "var(--font-display)",
           fontWeight: 700,
@@ -421,7 +421,7 @@ function DesktopHero() {
     sizeCanvas();
     window.addEventListener("resize", sizeCanvas, { passive: true });
 
-    const runway = 200;
+    const runway = 280;
 
     const ctxGsap = gsap.context(() => {
       const master = gsap.timeline({
@@ -430,7 +430,7 @@ function DesktopHero() {
           start: "top top",
           end: `+=${runway}%`,
           pin: pin,
-          scrub: 0.3,
+          scrub: 0.6,
           anticipatePin: 1,
         },
       });
@@ -448,19 +448,19 @@ function DesktopHero() {
 
       if (contentRef.current) {
         const items = contentRef.current.querySelectorAll<HTMLElement>("[data-hero-layer]");
-        master.to(items, { opacity: 0, y: -30, duration: 20 / runway, ease: "power2.in" }, 5 / runway);
+        master.to(items, { opacity: 0, y: -30, duration: 30 / runway, ease: "power2.in" }, 5 / runway);
       }
 
       if (goldWashRef.current) {
-        master.to(goldWashRef.current, { opacity: 1, duration: 60 / runway, ease: "power2.out" }, 20 / runway);
+        master.to(goldWashRef.current, { opacity: 1, duration: 100 / runway, ease: "power2.out" }, 30 / runway);
       }
 
       if (canvasWrapRef.current) {
-        master.to(canvasWrapRef.current, { scale: 1.08, duration: (runway - 40) / runway, ease: "power2.out" }, 40 / runway);
+        master.to(canvasWrapRef.current, { scale: 1.06, duration: (runway - 50) / runway, ease: "power2.out" }, 50 / runway);
       }
 
       if (darkScrimRef.current) {
-        master.to(darkScrimRef.current, { opacity: 0.35, duration: (runway - 160) / runway, ease: "power1.in" }, 160 / runway);
+        master.to(darkScrimRef.current, { opacity: 0.35, duration: (runway - 220) / runway, ease: "power1.in" }, 220 / runway);
       }
 
       if (darkScrimRef.current && canvasWrapRef.current) {
@@ -488,7 +488,7 @@ function DesktopHero() {
       ref={sectionRef}
       aria-label="Seven Star Chauffeurs — cinematic door opening"
       className="relative w-full bg-[var(--obsidian)]"
-      style={{ height: "300vh" }}
+      style={{ height: "380vh" }}
     >
       <div ref={pinRef} className="relative w-full h-[100svh] overflow-hidden">
         <div
