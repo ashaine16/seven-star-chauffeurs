@@ -14,7 +14,7 @@ function smoothScrollTo(target: string) {
   const navOffset = Math.min(Math.max(72, window.innerHeight * 0.09), 108);
   gsap.to(window, {
     duration: 1.4,
-    ease: "cubic-bezier(0.16, 1, 0.3, 1)",
+    ease: "power3.out",
     scrollTo: { y: target, offsetY: navOffset, autoKill: true },
   });
 }

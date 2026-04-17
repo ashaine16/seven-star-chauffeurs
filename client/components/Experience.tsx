@@ -227,51 +227,64 @@ export default function Experience() {
           </p>
         </div>
 
-        {/* Four pillars — 2×2 grid on desktop, staggered offsets for editorial rhythm */}
+        {/* Four pillars — 2×2 grid on desktop, single column on mobile */}
         <div
           className="grid md:grid-cols-2"
           style={{
             marginTop: "clamp(64px, 10vh, 120px)",
-            gap: "clamp(48px, 8vh, 96px) clamp(32px, 4vw, 72px)",
+            gap: "clamp(56px, 8vh, 96px) clamp(48px, 5vw, 80px)",
           }}
         >
-          {PILLARS.map((p, i) => (
+          {PILLARS.map((p) => (
             <article
               key={p.number}
               data-pillar
               style={{
-                marginTop: i >= 2 ? "clamp(12px, 3vh, 40px)" : "0",
                 willChange: "transform, opacity",
+                padding: "clamp(24px, 3vw, 40px)",
+                background: "rgba(5,5,5,0.3)",
+                border: "1px solid rgba(212,160,74,0.1)",
+                position: "relative",
               }}
             >
               <div
-                data-pillar-numeral
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: "clamp(56px, 7vw, 96px)",
-                  color: "rgba(212,160,74,0.22)",
-                  letterSpacing: "0.04em",
-                  lineHeight: 1,
+                  display: "flex",
+                  alignItems: "baseline",
+                  gap: "clamp(14px, 2vw, 24px)",
+                  marginBottom: "clamp(16px, 2vh, 24px)",
                 }}
-                aria-hidden
               >
-                {p.number}
+                <div
+                  data-pillar-numeral
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontStyle: "italic",
+                    fontWeight: 300,
+                    fontSize: "clamp(40px, 5vw, 64px)",
+                    color: "rgba(212,160,74,0.3)",
+                    letterSpacing: "0.04em",
+                    lineHeight: 1,
+                    flexShrink: 0,
+                  }}
+                  aria-hidden
+                >
+                  {p.number}
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 400,
+                    fontSize: "clamp(22px, 2.4vw, 30px)",
+                    color: "var(--ivory)",
+                    letterSpacing: "0.02em",
+                    lineHeight: 1.2,
+                    margin: 0,
+                  }}
+                >
+                  {p.title}
+                </h3>
               </div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 400,
-                  fontSize: "clamp(24px, 2.6vw, 32px)",
-                  color: "var(--ivory)",
-                  letterSpacing: "0.02em",
-                  lineHeight: 1.2,
-                  marginTop: "clamp(8px, 1vh, 16px)",
-                }}
-              >
-                {p.title}
-              </h3>
               <div
                 data-pillar-line
                 aria-hidden
@@ -279,20 +292,19 @@ export default function Experience() {
                   height: "1px",
                   width: "48px",
                   background: "var(--gold)",
-                  marginTop: "18px",
                   transform: "scaleX(0)",
                   transformOrigin: "left center",
                 }}
               />
               <p
                 style={{
-                  marginTop: "20px",
+                  margin: 0,
+                  marginTop: "clamp(16px, 2vh, 24px)",
                   color: "var(--chrome)",
                   fontFamily: "var(--font-sans)",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   lineHeight: 1.75,
                   letterSpacing: "0.015em",
-                  maxWidth: "52ch",
                 }}
               >
                 {p.body}

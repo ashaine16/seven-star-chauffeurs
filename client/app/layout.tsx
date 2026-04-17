@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default:
-      "Seven Star Chauffeurs — Vancouver's Premier Luxury Chauffeur Service",
+      "Seven Star Chauffeurs | Vancouver's Most Exclusive Luxury Chauffeur Service",
     template: "%s | Seven Star Chauffeurs",
   },
   description:
-    "Vancouver's most discreet private chauffeur service. Rolls-Royce Phantom, Ghost, Cullinan Black Badge, Mercedes-Maybach GLS 600, Cadillac Escalade IQ, and a private luxury touring coach. By invitation, one engagement at a time.",
+    "Vancouver's most discreet private chauffeur service. Rolls Royce Phantom, Ghost, Cullinan Black Badge, Mercedes Maybach GLS 600, Cadillac Escalade IQ and a private luxury touring coach. One engagement at a time, by appointment only.",
   keywords: [
     "Vancouver luxury chauffeur",
-    "Rolls-Royce Phantom chauffeur Vancouver",
+    "Rolls Royce Phantom chauffeur Vancouver",
     "private chauffeur Vancouver",
     "YVR airport chauffeur",
     "wedding chauffeur Vancouver",
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     locale: "en_CA",
     url: SITE_URL,
     siteName: "Seven Star Chauffeurs",
-    title: "Seven Star Chauffeurs — Vancouver's Premier Luxury Chauffeur Service",
+    title: "Seven Star Chauffeurs | Vancouver's Most Exclusive Luxury Chauffeur Service",
     description:
-      "Rolls-Royce, Maybach, Escalade IQ. Vancouver's most discreet and exceptional chauffeur service. By invitation.",
+      "Rolls Royce, Maybach, Escalade IQ. Vancouver's most discreet and exceptional chauffeur service. By appointment only.",
     images: [
       {
         url: "/logos/seven-star-gold.webp",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Seven Star Chauffeurs",
     description:
-      "Vancouver's most discreet private chauffeur service. By invitation.",
+      "Vancouver's most discreet private chauffeur service. By appointment only.",
     images: ["/logos/seven-star-gold.webp"],
   },
   robots: {
@@ -103,7 +103,7 @@ const JSON_LD = {
       },
       slogan: "Discretion, driven.",
       description:
-        "Vancouver's most discreet private chauffeur service. Rolls-Royce Phantom, Ghost, Cullinan Black Badge, Mercedes-Maybach GLS 600, Cadillac Escalade IQ.",
+        "Vancouver's most discreet private chauffeur service. Rolls Royce Phantom, Ghost, Cullinan Black Badge, Mercedes Maybach GLS 600, Cadillac Escalade IQ.",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Vancouver",
@@ -193,7 +193,7 @@ const JSON_LD = {
               "@type": "Service",
               name: "Airport Transfers at YVR",
               description:
-                "Meet-and-greet at International Arrivals, flight-tracked, luggage service, Phantom or Maybach at the kerb.",
+                "Meet-and-greet at International Arrivals, flight tracked, luggage service, Phantom or Maybach at the kerb.",
             },
           },
           {
@@ -202,7 +202,7 @@ const JSON_LD = {
               "@type": "Service",
               name: "Corporate Chauffeur",
               description:
-                "Single-driver continuity for executive engagements across Metro Vancouver and inter-province. NDA-ready.",
+                "Single-driver continuity for executive engagements across Metro Vancouver and inter province. NDA ready.",
             },
           },
           {
@@ -211,16 +211,16 @@ const JSON_LD = {
               "@type": "Service",
               name: "Wedding Chauffeur",
               description:
-                "Cullinan Black Badge with custom livery, red-carpet arrival, photographer liaison, multi-location choreography.",
+                "Cullinan Black Badge with custom livery, red carpet arrival, photographer liaison, multi location choreography.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Whistler & Sea-to-Sky",
+              name: "Whistler & Sea to Sky",
               description:
-                "Fully-electric Cadillac Escalade IQ between Vancouver and Whistler. Scenic stopovers by request.",
+                "Fully electric Cadillac Escalade IQ between Vancouver and Whistler. Scenic stopovers by request.",
             },
           },
           {
@@ -238,7 +238,7 @@ const JSON_LD = {
               "@type": "Service",
               name: "Hourly Charter",
               description:
-                "Mercedes-Maybach GLS 600 on retainer. Two-hour minimum, champagne service, revisable itinerary.",
+                "Mercedes Maybach GLS 600 on retainer. Two hour minimum, champagne service, revisable itinerary.",
             },
           },
         ],
@@ -253,7 +253,7 @@ const JSON_LD = {
           name: "How do I book Seven Star Chauffeurs?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Reservations are accepted by private enquiry through the form on our site. A concierge responds within hours with availability and confirmation, including a reference number of the form SSC-XXXX-XXXX.",
+            text: "Reservations are accepted by private enquiry through the form on our site. A concierge responds within hours with availability and confirmation, including a reference number of the form SSC XXXX XXXX.",
           },
         },
         {
@@ -269,7 +269,7 @@ const JSON_LD = {
           name: "Are Seven Star chauffeurs vetted?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "All chauffeurs are background-checked, trained in discretion, and NDA-ready on request.",
+            text: "All chauffeurs are background checked, trained in discretion, and NDA ready on request.",
           },
         },
         {
@@ -277,7 +277,7 @@ const JSON_LD = {
           name: "What is the cancellation policy?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Reservations may be adjusted or cancelled up to 48 hours before the engagement without fee. Shorter-notice changes are accommodated on a case-by-case basis.",
+            text: "Reservations may be adjusted or cancelled up to 48 hours before the engagement without fee. Shorter notice changes are accommodated on a case by case basis.",
           },
         },
         {
@@ -285,7 +285,7 @@ const JSON_LD = {
           name: "What destinations does Seven Star serve?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Metro Vancouver primarily. Whistler and the Sea-to-Sky corridor by standing route. Other destinations within Western Canada by arrangement.",
+            text: "Metro Vancouver primarily. Whistler and the Sea to Sky corridor by standing route. Other destinations within Western Canada by arrangement.",
           },
         },
         {
