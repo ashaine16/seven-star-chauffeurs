@@ -16,14 +16,22 @@ const LINKS = [
   { label: "Enquiries", href: "#faq" },
 ];
 
+const MOBILE_BP = 768;
+
+function getNavHeight() {
+  const nav = document.querySelector("nav[aria-label='Primary']");
+  return nav ? nav.getBoundingClientRect().height : 72;
+}
+
 function smoothScrollTo(target: string) {
-  const navOffset = Math.min(Math.max(72, window.innerHeight * 0.09), 108);
   const el = document.querySelector(target);
   if (el) {
+    const navH = getNavHeight();
+    const top = el.getBoundingClientRect().top + window.scrollY - navH;
     gsap.to(window, {
       duration: 1.2,
       ease: "power3.out",
-      scrollTo: { y: target, offsetY: navOffset, autoKill: true },
+      scrollTo: { y: Math.max(0, top), autoKill: true },
     });
   } else {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -33,13 +41,21 @@ function smoothScrollTo(target: string) {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.5);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const check = () => {
+      setScrolled(window.scrollY > window.innerHeight * 0.5);
+      setIsMobile(window.innerWidth < MOBILE_BP);
+    };
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
   }, []);
 
   useEffect(() => {
@@ -66,19 +82,28 @@ export default function Navbar() {
   const handleNavClick = useCallback((e: React.MouseEvent, href: string) => {
     e.preventDefault();
     e.stopPropagation();
-    setMenuOpen(false);
-    smoothScrollTo(href);
-  }, []);
+    if (menuOpen) {
+      setMenuOpen(false);
+      document.body.style.overflow = "";
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          smoothScrollTo(href);
+        });
+      });
+    } else {
+      smoothScrollTo(href);
+    }
+  }, [menuOpen]);
 
   return (
     <nav
       aria-label="Primary"
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        background: scrolled || menuOpen ? "rgba(5,5,5,0.92)" : "transparent",
-        backdropFilter: scrolled || menuOpen ? "blur(16px)" : "none",
-        WebkitBackdropFilter: scrolled || menuOpen ? "blur(16px)" : "none",
-        borderBottom: scrolled
+        background: isMobile || scrolled || menuOpen ? "rgba(5,5,5,0.97)" : "transparent",
+        backdropFilter: isMobile || scrolled || menuOpen ? "blur(16px)" : "none",
+        WebkitBackdropFilter: isMobile || scrolled || menuOpen ? "blur(16px)" : "none",
+        borderBottom: isMobile || scrolled
           ? "1px solid rgba(197,165,90,0.18)"
           : "1px solid transparent",
         transition:

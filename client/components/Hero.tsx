@@ -9,11 +9,15 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function smoothScrollTo(target: string) {
-  const navOffset = Math.min(Math.max(72, window.innerHeight * 0.09), 108);
+  const el = document.querySelector(target);
+  if (!el) return;
+  const nav = document.querySelector("nav[aria-label='Primary']");
+  const navH = nav ? nav.getBoundingClientRect().height : 72;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH;
   gsap.to(window, {
     duration: 1.4,
     ease: "power3.out",
-    scrollTo: { y: target, offsetY: navOffset, autoKill: true },
+    scrollTo: { y: Math.max(0, top), autoKill: true },
   });
 }
 

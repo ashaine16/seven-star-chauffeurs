@@ -11,11 +11,15 @@ if (typeof window !== "undefined") {
 }
 
 function smoothScrollTo(target: string) {
-  const navOffset = Math.min(Math.max(72, window.innerHeight * 0.09), 108);
+  const el = document.querySelector(target);
+  if (!el) return;
+  const nav = document.querySelector("nav[aria-label='Primary']");
+  const navH = nav ? nav.getBoundingClientRect().height : 72;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH;
   gsap.to(window, {
     duration: 1.4,
     ease: "power3.out",
-    scrollTo: { y: target, offsetY: navOffset, autoKill: true },
+    scrollTo: { y: Math.max(0, top), autoKill: true },
   });
 }
 
@@ -123,48 +127,47 @@ export default function Services() {
         const text = block.querySelector<HTMLElement>("[data-service-text]");
         const line = block.querySelector<HTMLElement>("[data-service-line]");
         const cta = block.querySelector<HTMLElement>("[data-service-cta]");
-        const imageFromX = block.dataset.imageSide === "left" ? -100 : 100;
+        const imageFromX = block.dataset.imageSide === "left" ? -80 : 80;
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: block,
-            start: "top 75%",
-            end: "bottom 60%",
-            scrub: 1.5,
+            start: "top 82%",
+            toggleActions: "play none none reverse",
           },
-          defaults: { ease: "power2.out" },
+          defaults: { ease: "power3.out" },
         });
 
         if (image) {
           tl.fromTo(
             image,
             { x: imageFromX, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.6 },
+            { x: 0, opacity: 1, duration: 1.0 },
             0,
           );
         }
         if (text) {
           tl.fromTo(
             text,
-            { y: 40, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.6 },
-            0.2,
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8 },
+            0.15,
           );
         }
         if (line) {
           tl.fromTo(
             line,
             { width: 0 },
-            { width: 60, duration: 0.5 },
-            0.5,
+            { width: 60, duration: 0.6 },
+            0.4,
           );
         }
         if (cta) {
           tl.fromTo(
             cta,
             { y: 12, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.45 },
-            0.6,
+            { y: 0, opacity: 1, duration: 0.5 },
+            0.5,
           );
         }
       });
@@ -235,13 +238,12 @@ export default function Services() {
         </p>
       </div>
 
-      {/* Blocks */}
+      {/* Blocks — full bleed so images can reach screen edge */}
       <div
-        className="mx-auto flex flex-col"
+        className="flex flex-col"
         style={{
-          maxWidth: "1400px",
           gap: "clamp(24px, 4vh, 56px)",
-          padding: "0 clamp(24px, 5vw, 64px) clamp(64px, 10vh, 120px)",
+          paddingBottom: "clamp(64px, 10vh, 120px)",
         }}
       >
         {SERVICES.map((s, i) => {
@@ -266,13 +268,14 @@ function ServiceBlock({
     <article
       data-service-block
       data-image-side={imageSide}
-      className="grid md:grid-cols-2 items-stretch"
+      className="grid md:grid-cols-2 items-stretch mx-auto"
       style={{
-        gap: "clamp(0px, 2vw, 32px)",
+        maxWidth: "1400px",
+        width: "100%",
         position: "relative",
       }}
     >
-      {/* Image side — always on top on mobile, alternates on desktop */}
+      {/* Image side — flush to screen edge on its side */}
       <div
         data-service-image
         className={`order-1 ${imageSide === "left" ? "md:order-1" : "md:order-2"}`}
@@ -282,7 +285,6 @@ function ServiceBlock({
           minHeight: "clamp(200px, 30vh, 440px)",
           overflow: "hidden",
           willChange: "transform, opacity",
-          borderRadius: "2px",
         }}
       >
         {service.image ? (
@@ -310,8 +312,8 @@ function ServiceBlock({
             pointerEvents: "none",
             background:
               imageSide === "left"
-                ? "linear-gradient(90deg, transparent 60%, rgba(5,5,5,0.55) 100%)"
-                : "linear-gradient(90deg, rgba(5,5,5,0.55) 0%, transparent 40%)",
+                ? "linear-gradient(90deg, transparent 55%, rgba(5,5,5,0.6) 100%)"
+                : "linear-gradient(90deg, rgba(5,5,5,0.6) 0%, transparent 45%)",
           }}
         />
       </div>
@@ -322,7 +324,7 @@ function ServiceBlock({
         style={{
           display: "flex",
           alignItems: "center",
-          padding: "clamp(12px, 2vw, 32px) 0",
+          padding: "clamp(12px, 2vw, 32px) clamp(24px, 5vw, 64px)",
         }}
       >
         <div
