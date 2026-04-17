@@ -293,7 +293,7 @@ function ServiceBlock({
             sizes="(min-width: 900px) 50vw, 100vw"
             style={{
               objectFit: "cover",
-              objectPosition: "center",
+              objectPosition: imageSide === "left" ? "left center" : "right center",
               filter: "brightness(0.92)",
             }}
           />

@@ -109,10 +109,10 @@ function HeroContent({ onReserve, onFleet }: { onReserve: () => void; onFleet: (
         className="page-in-text text-center"
         style={{
           fontFamily: "var(--font-display)",
-          fontWeight: 500,
+          fontWeight: 700,
           fontStyle: "italic",
-          fontSize: "clamp(18px, 2.8vw, 32px)",
-          letterSpacing: "0.01em",
+          fontSize: "clamp(20px, 3vw, 34px)",
+          letterSpacing: "0.03em",
           color: "var(--ivory)",
           marginTop: "clamp(4px, 0.6vh, 8px)",
           lineHeight: 1,
