@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef } from "react";
 import NextImage from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -30,6 +31,7 @@ type Service = {
   bullets: string[];
   image: string | null;
   imageAlt: string;
+  slug: string;
 };
 
 const SERVICES: Service[] = [
@@ -45,6 +47,7 @@ const SERVICES: Service[] = [
     ],
     image: "/fleet/phantom.webp",
     imageAlt: "Rolls-Royce Phantom staged for an airport arrival",
+    slug: "airport-chauffeur-yvr",
   },
   {
     eyebrow: "Executive Movement",
@@ -58,6 +61,7 @@ const SERVICES: Service[] = [
     ],
     image: "/fleet/ghost.webp",
     imageAlt: "Rolls-Royce Ghost Series II in downtown Vancouver",
+    slug: "corporate-chauffeur",
   },
   {
     eyebrow: "The Once-in-a-Lifetime",
@@ -71,6 +75,7 @@ const SERVICES: Service[] = [
     ],
     image: "/fleet/cullinan.webp",
     imageAlt: "Rolls-Royce Cullinan Black Badge prepared for a wedding",
+    slug: "wedding-chauffeur",
   },
   {
     eyebrow: "The Coastal Highway",
@@ -84,6 +89,7 @@ const SERVICES: Service[] = [
     ],
     image: "/fleet/escalade-iq.webp",
     imageAlt: "Cadillac Escalade IQ on the Sea-to-Sky Highway",
+    slug: "whistler-sea-to-sky",
   },
   {
     eyebrow: "After Dark",
@@ -97,6 +103,7 @@ const SERVICES: Service[] = [
     ],
     image: "/fleet/party-bus.webp",
     imageAlt: "Luxury party bus exterior",
+    slug: "nightlife-events",
   },
   {
     eyebrow: "By the Hour",
@@ -110,6 +117,7 @@ const SERVICES: Service[] = [
     ],
     image: "/fleet/maybach-interior.webp",
     imageAlt: "Mercedes-Maybach GLS 600 rear cabin interior",
+    slug: "hourly-charter",
   },
 ];
 
@@ -439,10 +447,9 @@ function ServiceBlock({
             </ul>
           )}
 
-          <a
+          <Link
             data-service-cta
-            href="#reserve"
-            onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}
+            href={`/services/${service.slug}/`}
             className="inline-flex items-center justify-center btn-gold"
             style={{
               marginTop: "22px",
@@ -468,8 +475,8 @@ function ServiceBlock({
               e.currentTarget.style.color = "var(--gold)";
             }}
           >
-            Reserve
-          </a>
+            Learn More
+          </Link>
         </div>
       </div>
     </article>

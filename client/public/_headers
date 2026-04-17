@@ -1,48 +1,83 @@
-# Cloudflare Pages headers
+# ═══════════════════════════════════════════════════════════
+# Seven Star Chauffeurs — Cloudflare Pages Headers
+# Optimized for: performance, security, SEO, AEO
+# ═══════════════════════════════════════════════════════════
 
 # Global security + baseline
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https:; media-src 'self'; frame-ancestors 'none'
 
-# Hero cinematic frames — hashed by content, cache forever
+# ── Immutable static assets (hashed / versioned) ──
+
+# Hero cinematic frames — WebP, content-hashed
 /frames/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Fleet imagery — long cache
+# Fleet vehicle imagery
 /fleet/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Logos — long cache
+# Logos and brand assets
 /logos/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Next.js hashed static assets
+# Next.js hashed JS/CSS chunks
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 
-# AEO discovery files — short cache so updates propagate fast
+# ── SEO / AEO discovery files ──
+
+# LLM discovery — short cache so updates propagate fast
 /llms.txt
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  X-Robots-Tag: noindex
 
 /llms-full.txt
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  X-Robots-Tag: noindex
 
+# Crawl directives
 /robots.txt
-  Cache-Control: public, max-age=86400
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-# HTML — revalidate
+# ── HTML pages — revalidate on every request ──
 /
   Cache-Control: public, max-age=0, must-revalidate
 
 /*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Sub-page directories (fleet, services, areas, legal, about)
+/fleet/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/services/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/areas/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/about/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/privacy-policy/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/terms-of-service/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/accessibility/*
   Cache-Control: public, max-age=0, must-revalidate

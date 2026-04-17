@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import NextImage from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -28,6 +29,7 @@ type Vehicle = {
   model: string;
   description: string;
   image: string | null;
+  slug: string;
 };
 
 const FLEET: Vehicle[] = [
@@ -37,13 +39,15 @@ const FLEET: Vehicle[] = [
     description:
       "The benchmark for chauffeured luxury. A cabin of hand-stitched leather and star-field headliner, gliding in near-silence.",
     image: "/fleet/phantom.webp",
+    slug: "rolls-royce-phantom",
   },
   {
     make: "Rolls-Royce",
     model: "Ghost Series II",
     description:
-      "A driver’s Rolls-Royce. Effortless performance paired with the pinnacle of rear-cabin refinement.",
+      "A driver's Rolls-Royce. Effortless performance paired with the pinnacle of rear-cabin refinement.",
     image: "/fleet/ghost.webp",
+    slug: "rolls-royce-ghost",
   },
   {
     make: "Rolls-Royce",
@@ -51,6 +55,7 @@ const FLEET: Vehicle[] = [
     description:
       "Unrelenting presence. The darker, more assertive expression of Rolls-Royce SUV craftsmanship.",
     image: "/fleet/cullinan.webp",
+    slug: "rolls-royce-cullinan-black-badge",
   },
   {
     make: "Mercedes-Maybach",
@@ -58,6 +63,7 @@ const FLEET: Vehicle[] = [
     description:
       "First-class for six. Reclining rear thrones, champagne flutes, and Executive Seating beyond what a sedan can offer.",
     image: "/fleet/maybach.webp",
+    slug: "mercedes-maybach-gls-600",
   },
   {
     make: "Cadillac",
@@ -65,6 +71,7 @@ const FLEET: Vehicle[] = [
     description:
       "Among the first fully-electric luxury chauffeur vehicles in Western Canada. Silent, immense, forward.",
     image: "/fleet/escalade-iq.webp",
+    slug: "cadillac-escalade-iq",
   },
   {
     make: "Private",
@@ -72,6 +79,7 @@ const FLEET: Vehicle[] = [
     description:
       "For celebrations that travel. A touring coach reserved exclusively for weddings, galas, and private milestones.",
     image: "/fleet/party-bus.webp",
+    slug: "luxury-party-bus",
   },
 ];
 
@@ -480,10 +488,9 @@ function FleetCard({
           >
             {vehicle.description}
           </p>
-          <a
-            href="#reserve"
-            onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}
-            className="inline-flex items-center justify-center"
+          <Link
+            href={`/fleet/${vehicle.slug}/`}
+            className="inline-flex items-center justify-center btn-gold"
             style={{
               marginTop: "16px",
               padding: "10px 22px",
@@ -507,8 +514,8 @@ function FleetCard({
               e.currentTarget.style.color = "var(--gold)";
             }}
           >
-            Info
-          </a>
+            Explore
+          </Link>
         </div>
       </article>
     );
@@ -641,9 +648,8 @@ function FleetCard({
 
       {/* Explore button below image — aligned with text overlay */}
       <div style={{ paddingTop: "clamp(16px, 2vh, 24px)", paddingLeft: "clamp(24px, 3.5vw, 48px)" }}>
-        <a
-          href="#reserve"
-          onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}
+        <Link
+          href={`/fleet/${vehicle.slug}/`}
           className="inline-flex items-center justify-center btn-gold"
           style={{
             padding: "12px 28px",
@@ -668,7 +674,7 @@ function FleetCard({
           }}
         >
           Explore
-        </a>
+        </Link>
       </div>
     </article>
   );

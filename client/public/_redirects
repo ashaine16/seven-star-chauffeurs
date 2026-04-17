@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects
+# Enforce trailing slashes for consistency (Next.js trailingSlash: true)
+
+# Redirect www to apex (if using custom domain)
+# https://www.sevenstarchauffeurs.com/* https://sevenstarchauffeurs.com/:splat 301

@@ -214,6 +214,7 @@ export default function VehiclePage({ vehicle, accentColor = "var(--gold)" }: Pr
 
           <ScrollReveal variant="fade-left">
             <div
+              className="img-zoom"
               style={{
                 position: "relative",
                 borderRadius: "4px",

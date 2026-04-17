@@ -30,7 +30,7 @@ export default function PageShell({ children, breadcrumbs }: Props) {
   }, []);
 
   return (
-    <main ref={mainRef} className="min-h-screen" style={{ background: "var(--obsidian)" }}>
+    <main ref={mainRef} className="min-h-screen" style={{ background: "var(--obsidian)", overflowX: "hidden" }}>
       {/* Breadcrumb */}
       <nav
         aria-label="Breadcrumb"
