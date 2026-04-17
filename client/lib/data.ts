@@ -373,7 +373,7 @@ export const SERVICES: ServiceData[] = [
   },
   {
     slug: "wedding-chauffeur",
-    eyebrow: "The Once-in-a-Lifetime",
+    eyebrow: "The Special Occasions",
     title: "Wedding Chauffeur",
     description:
       "The Cullinan Black Badge dressed for your day. Custom livery, red-carpet arrival, photographer liaison.",

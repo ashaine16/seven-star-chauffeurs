@@ -64,7 +64,7 @@ const SERVICES: Service[] = [
     slug: "corporate-chauffeur",
   },
   {
-    eyebrow: "The Once-in-a-Lifetime",
+    eyebrow: "The Special Occasions",
     title: "Wedding Chauffeur",
     description:
       "The Cullinan Black Badge dressed for your day. Custom livery, red-carpet arrival, photographer liaison. From first look to final departure, we hold the choreography.",
