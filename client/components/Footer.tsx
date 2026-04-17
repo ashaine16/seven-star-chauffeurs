@@ -4,9 +4,19 @@ import { useLayoutEffect, useRef } from "react";
 import NextImage from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+}
+
+function smoothScrollTo(target: string) {
+  const navOffset = Math.min(Math.max(72, window.innerHeight * 0.09), 108);
+  gsap.to(window, {
+    duration: 1.4,
+    ease: "cubic-bezier(0.16, 1, 0.3, 1)",
+    scrollTo: { y: target, offsetY: navOffset, autoKill: true },
+  });
 }
 
 const FLEET_LINKS = [
@@ -132,6 +142,10 @@ export default function Footer() {
           >
             <a
               href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
               aria-label="Seven Star Chauffeurs"
               style={{
                 display: "inline-block",
@@ -314,10 +328,10 @@ export default function Footer() {
           >
             <nav
               aria-label="Footer navigation"
-              className="hidden md:flex"
+              className="flex flex-wrap"
               style={{
                 alignItems: "center",
-                gap: "clamp(20px, 2.6vw, 32px)",
+                gap: "clamp(14px, 2.6vw, 32px)",
               }}
             >
               {SITE_LINKS.map((l) => (
@@ -372,6 +386,12 @@ function FooterList({
         <li key={item.label}>
           <a
             href={item.href}
+            onClick={(e) => {
+              if (item.href.startsWith("#")) {
+                e.preventDefault();
+                smoothScrollTo(item.href);
+              }
+            }}
             style={{
               fontFamily: "var(--font-sans)",
               fontWeight: 300,
@@ -461,6 +481,12 @@ function SmallLink({
   return (
     <a
       href={href}
+      onClick={(e) => {
+        if (href.startsWith("#")) {
+          e.preventDefault();
+          smoothScrollTo(href);
+        }
+      }}
       style={{
         fontFamily: "var(--font-sans)",
         fontSize: "12px",
@@ -487,6 +513,10 @@ function BackToTop() {
   return (
     <a
       href="#top"
+      onClick={(e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }}
       className="inline-flex items-center"
       aria-label="Back to top"
       style={{
@@ -547,8 +577,8 @@ function SocialIcon({
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       style={{
-        width: "38px",
-        height: "38px",
+        width: "44px",
+        height: "44px",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",

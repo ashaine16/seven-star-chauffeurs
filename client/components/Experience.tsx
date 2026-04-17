@@ -240,11 +240,6 @@ export default function Experience() {
               key={p.number}
               data-pillar
               style={{
-                // Asymmetric offsets — odd indented further, even aligned flush
-                paddingLeft:
-                  i % 2 === 1 ? "clamp(0px, 4vw, 64px)" : "0",
-                paddingRight:
-                  i % 2 === 0 ? "clamp(0px, 4vw, 64px)" : "0",
                 marginTop: i >= 2 ? "clamp(12px, 3vh, 40px)" : "0",
                 willChange: "transform, opacity",
               }}

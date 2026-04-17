@@ -4,9 +4,19 @@ import { useLayoutEffect, useRef } from "react";
 import NextImage from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+}
+
+function smoothScrollTo(target: string) {
+  const navOffset = Math.min(Math.max(72, window.innerHeight * 0.09), 108);
+  gsap.to(window, {
+    duration: 1.4,
+    ease: "cubic-bezier(0.16, 1, 0.3, 1)",
+    scrollTo: { y: target, offsetY: navOffset, autoKill: true },
+  });
 }
 
 type Service = {
@@ -262,14 +272,14 @@ function ServiceBlock({
         position: "relative",
       }}
     >
-      {/* Image side */}
+      {/* Image side — always on top on mobile, alternates on desktop */}
       <div
         data-service-image
+        className={`order-1 ${imageSide === "left" ? "md:order-1" : "md:order-2"}`}
         style={{
           position: "relative",
-          order: imageSide === "left" ? 1 : 2,
-          aspectRatio: "5 / 4",
-          minHeight: "clamp(260px, 40vh, 440px)",
+          aspectRatio: "16 / 10",
+          minHeight: "clamp(220px, 35vh, 440px)",
           overflow: "hidden",
           willChange: "transform, opacity",
         }}
@@ -281,7 +291,7 @@ function ServiceBlock({
             fill
             sizes="(min-width: 900px) 50vw, 100vw"
             style={{
-              objectFit: "contain",
+              objectFit: "cover",
               objectPosition: "center",
               filter: "brightness(0.92)",
             }}
@@ -306,8 +316,8 @@ function ServiceBlock({
 
       {/* Text side — frosted glass panel */}
       <div
+        className={`order-2 ${imageSide === "left" ? "md:order-2" : "md:order-1"}`}
         style={{
-          order: imageSide === "left" ? 2 : 1,
           display: "flex",
           alignItems: "center",
           padding: "clamp(12px, 2vw, 32px) 0",
@@ -384,6 +394,7 @@ function ServiceBlock({
           <a
             data-service-cta
             href="#reserve"
+            onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}
             className="inline-flex items-center justify-center"
             style={{
               marginTop: "22px",

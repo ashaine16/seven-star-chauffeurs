@@ -382,25 +382,124 @@ function FleetCard({
 }) {
   const [hovered, setHovered] = useState(false);
 
-  const cardStyle: React.CSSProperties = isDesktop
-    ? {
+  if (!isDesktop) {
+    return (
+      <article
+        data-fleet-card
+        aria-label={`${vehicle.make} ${vehicle.model}`}
+        style={{ width: "100%" }}
+      >
+        {/* Image block */}
+        <div
+          data-fleet-image
+          style={{
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            overflow: "hidden",
+          }}
+        >
+          {vehicle.image ? (
+            <NextImage
+              src={vehicle.image}
+              alt={`${vehicle.make} ${vehicle.model}`}
+              fill
+              priority={index < 2}
+              sizes="100vw"
+              draggable={false}
+              style={{ objectFit: "cover", objectPosition: "center", userSelect: "none" }}
+            />
+          ) : (
+            <PlaceholderMark label={`${vehicle.make} ${vehicle.model}`} />
+          )}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to top, rgba(5,5,5,0.4) 0%, transparent 50%)",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
+
+        {/* Text block below */}
+        <div style={{ padding: "clamp(16px, 3vw, 24px) 0 0" }}>
+          <div
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontWeight: 500,
+              fontSize: "10px",
+              letterSpacing: "0.5em",
+              color: "var(--gold)",
+              textTransform: "uppercase",
+            }}
+          >
+            {vehicle.make}
+          </div>
+          <div
+            style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 400,
+              fontSize: "22px",
+              color: "var(--ivory)",
+              marginTop: "6px",
+              lineHeight: 1.2,
+              letterSpacing: "0.02em",
+            }}
+          >
+            {vehicle.model}
+          </div>
+          <div
+            aria-hidden
+            style={{ marginTop: "12px", height: "1px", width: "40px", background: "var(--gold)" }}
+          />
+          <p
+            style={{
+              marginTop: "12px",
+              color: "var(--chrome)",
+              fontFamily: "var(--font-sans)",
+              fontSize: "13px",
+              lineHeight: 1.65,
+              letterSpacing: "0.015em",
+            }}
+          >
+            {vehicle.description}
+          </p>
+          <a
+            href="#reserve"
+            className="inline-flex items-center justify-center"
+            style={{
+              marginTop: "16px",
+              padding: "10px 22px",
+              fontFamily: "var(--font-sans)",
+              fontWeight: 500,
+              fontSize: "10px",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              color: "var(--gold)",
+              background: "transparent",
+              border: "1px solid var(--gold)",
+              borderRadius: "2px",
+            }}
+          >
+            Info
+          </a>
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <article
+      data-fleet-card
+      style={{
         flex: "0 0 auto",
         width: "clamp(520px, 55vw, 860px)",
         height: "clamp(460px, 68svh, 680px)",
         position: "relative",
         overflow: "hidden",
-      }
-    : {
-        width: "100%",
-        aspectRatio: "3 / 2",
-        position: "relative",
-        overflow: "hidden",
-      };
-
-  return (
-    <article
-      data-fleet-card
-      style={cardStyle}
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       aria-label={`${vehicle.make} ${vehicle.model}`}
@@ -422,36 +521,14 @@ function FleetCard({
             alt={`${vehicle.make} ${vehicle.model}`}
             fill
             priority={index < 2}
-            sizes={isDesktop ? "55vw" : "100vw"}
+            sizes="55vw"
             draggable={false}
-            style={{
-              objectFit: isDesktop ? "contain" : "cover",
-              objectPosition: "center",
-              userSelect: "none",
-            }}
+            style={{ objectFit: "contain", objectPosition: "center", userSelect: "none" }}
           />
         ) : (
           <PlaceholderMark label={`${vehicle.make} ${vehicle.model}`} />
         )}
       </div>
-
-      {/* Bottom gradient scrim for text legibility on mobile */}
-      {!isDesktop && (
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "65%",
-            background:
-              "linear-gradient(to top, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.5) 40%, transparent 100%)",
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        />
-      )}
 
       <div
         data-fleet-text
@@ -461,7 +538,7 @@ function FleetCard({
           bottom: "clamp(24px, 5vh, 48px)",
           maxWidth: "min(460px, 70%)",
           zIndex: 2,
-          opacity: isDesktop ? 0 : 1,
+          opacity: 0,
         }}
       >
         <div
@@ -476,7 +553,6 @@ function FleetCard({
         >
           {vehicle.make}
         </div>
-
         <div
           style={{
             fontFamily: "var(--font-display)",
@@ -490,20 +566,18 @@ function FleetCard({
         >
           {vehicle.model}
         </div>
-
         <div
           data-fleet-line
           aria-hidden
           style={{
             marginTop: "18px",
             height: "1px",
-            width: isDesktop ? 0 : 60,
+            width: 0,
             maxWidth: hovered ? 120 : 60,
             background: "var(--gold)",
             transition: "max-width 500ms cubic-bezier(0.4,0,0.2,1)",
           }}
         />
-
         <p
           style={{
             marginTop: "18px",
@@ -517,7 +591,6 @@ function FleetCard({
         >
           {vehicle.description}
         </p>
-
         <a
           href="#reserve"
           className="inline-flex items-center justify-center"

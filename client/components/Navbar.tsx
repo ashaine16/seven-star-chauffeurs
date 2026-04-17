@@ -1,34 +1,71 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import NextImage from "next/image";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 const LINKS = [
   { label: "Fleet", href: "#fleet" },
   { label: "Services", href: "#services" },
   { label: "Experience", href: "#experience" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Reserve", href: "#reserve" },
 ];
+
+function smoothScrollTo(target: string, onDone?: () => void) {
+  const navOffset = Math.min(Math.max(72, window.innerHeight * 0.09), 108);
+  gsap.to(window, {
+    duration: 1.4,
+    ease: "cubic-bezier(0.16, 1, 0.3, 1)",
+    scrollTo: { y: target, offsetY: navOffset, autoKill: true },
+    onComplete: onDone,
+  });
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight);
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.5);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!drawerRef.current) return;
+    if (menuOpen) {
+      gsap.fromTo(
+        drawerRef.current,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
+      );
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    setTimeout(() => smoothScrollTo(href), 50);
+  };
 
   return (
     <nav
       aria-label="Primary"
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        background: scrolled ? "rgba(5,5,5,0.85)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+        background: scrolled || menuOpen ? "rgba(5,5,5,0.92)" : "transparent",
+        backdropFilter: scrolled || menuOpen ? "blur(16px)" : "none",
+        WebkitBackdropFilter: scrolled || menuOpen ? "blur(16px)" : "none",
         borderBottom: scrolled
           ? "1px solid rgba(197,165,90,0.18)"
           : "1px solid transparent",
@@ -43,14 +80,23 @@ export default function Navbar() {
           padding: "clamp(6px, 0.8vw, 10px) clamp(20px, 4vw, 48px)",
         }}
       >
-        <a href="#top" aria-label="Seven Star Chauffeurs home" className="flex items-center gap-3">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setMenuOpen(false);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          aria-label="Seven Star Chauffeurs home"
+          className="flex items-center gap-3"
+        >
           <NextImage
             src="/logos/seven-star-mark.webp"
             alt="Seven Star Chauffeurs"
             width={400}
             height={400}
             priority
-            style={{ height: "clamp(72px, 7vw, 96px)", width: "auto", display: "block" }}
+            style={{ height: "clamp(56px, 6vw, 96px)", width: "auto", display: "block" }}
           />
         </a>
 
@@ -59,12 +105,12 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="link-ivory"
+                onClick={(e) => handleNavClick(e, l.href)}
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontWeight: 400,
-                  fontSize: "13px",
-                  letterSpacing: "0.2em",
+                  fontSize: "12px",
+                  letterSpacing: "0.22em",
                   textTransform: "uppercase",
                   color: scrolled ? "var(--gold)" : "var(--ivory)",
                   transition: "color 300ms cubic-bezier(0.4,0,0.2,1)",
@@ -78,12 +124,13 @@ export default function Navbar() {
 
         <a
           href="#reserve"
-          className="btn-gold hidden md:inline-flex items-center justify-center"
+          onClick={(e) => handleNavClick(e, "#reserve")}
+          className="hidden md:inline-flex items-center justify-center"
           style={{
-            padding: "12px 22px",
+            padding: "10px 22px",
             fontFamily: "var(--font-sans)",
             fontWeight: 500,
-            fontSize: "12px",
+            fontSize: "11px",
             letterSpacing: "0.28em",
             textTransform: "uppercase",
             color: scrolled ? "var(--obsidian)" : "var(--gold)",
@@ -96,18 +143,115 @@ export default function Navbar() {
           Reserve
         </a>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger / close */}
         <button
           type="button"
-          aria-label="Open menu"
-          className="md:hidden flex flex-col items-end gap-[6px]"
-          style={{ background: "transparent", border: 0, padding: 8 }}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="md:hidden flex flex-col items-center justify-center"
+          style={{
+            background: "transparent",
+            border: 0,
+            padding: 10,
+            width: "44px",
+            height: "44px",
+            position: "relative",
+          }}
+          onClick={() => setMenuOpen((v) => !v)}
         >
-          <span style={{ width: "24px", height: "1px", background: "var(--gold)" }} />
-          <span style={{ width: "20px", height: "1px", background: "var(--gold)" }} />
-          <span style={{ width: "24px", height: "1px", background: "var(--gold)" }} />
+          <span
+            style={{
+              width: "22px",
+              height: "1.5px",
+              background: "var(--gold)",
+              position: "absolute",
+              transition: "transform 300ms, opacity 200ms",
+              transform: menuOpen ? "rotate(45deg)" : "translateY(-5px)",
+            }}
+          />
+          <span
+            style={{
+              width: "22px",
+              height: "1.5px",
+              background: "var(--gold)",
+              position: "absolute",
+              transition: "opacity 200ms",
+              opacity: menuOpen ? 0 : 1,
+            }}
+          />
+          <span
+            style={{
+              width: "22px",
+              height: "1.5px",
+              background: "var(--gold)",
+              position: "absolute",
+              transition: "transform 300ms, opacity 200ms",
+              transform: menuOpen ? "rotate(-45deg)" : "translateY(5px)",
+            }}
+          />
         </button>
       </div>
+
+      {/* Mobile drawer */}
+      {menuOpen && (
+        <div
+          ref={drawerRef}
+          className="md:hidden"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(5,5,5,0.97)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "clamp(28px, 5vh, 44px)",
+            zIndex: -1,
+          }}
+        >
+          {LINKS.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={(e) => handleNavClick(e, l.href)}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 400,
+                fontSize: "clamp(24px, 4vw, 32px)",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--ivory)",
+                transition: "color 300ms",
+              }}
+            >
+              {l.label}
+            </a>
+          ))}
+          <a
+            href="#reserve"
+            onClick={(e) => handleNavClick(e, "#reserve")}
+            style={{
+              marginTop: "clamp(8px, 2vh, 16px)",
+              padding: "14px 36px",
+              fontFamily: "var(--font-sans)",
+              fontWeight: 500,
+              fontSize: "12px",
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+              color: "var(--obsidian)",
+              background: "var(--gold)",
+              border: "1px solid var(--gold)",
+              borderRadius: "2px",
+            }}
+          >
+            Reserve Now
+          </a>
+        </div>
+      )}
     </nav>
   );
 }

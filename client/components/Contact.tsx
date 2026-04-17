@@ -1020,8 +1020,8 @@ function StepperButton({
       disabled={disabled}
       aria-label={label === "+" ? "Add passenger" : "Remove passenger"}
       style={{
-        width: "36px",
-        height: "36px",
+        width: "44px",
+        height: "44px",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
