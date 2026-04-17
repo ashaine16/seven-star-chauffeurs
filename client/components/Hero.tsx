@@ -47,7 +47,7 @@ export default function Hero() {
   const darkScrimRef = useRef<HTMLDivElement>(null);
 
   const framesRef = useRef<HTMLImageElement[]>([]);
-  const frameStateRef = useRef({ index: 0, rafPending: false });
+  const frameStateRef = useRef({ exact: 0, index: 0 });
 
   const [loadProgress, setLoadProgress] = useState(0);
   const [ready, setReady] = useState(false);
@@ -151,51 +151,71 @@ export default function Hero() {
       return { w, h };
     };
 
-    const drawFrame = (index: number) => {
+    const findLoaded = (idx: number): HTMLImageElement | undefined => {
       const frames = framesRef.current;
-      if (!frames.length) return;
-      const clamped = Math.max(0, Math.min(index, frames.length - 1));
-      // Walk backward if a frame hasn't loaded yet (common with idle loading)
-      let img: HTMLImageElement | undefined = frames[clamped];
-      for (let i = clamped; i >= 0 && !img; i--) img = frames[i];
-      if (!img) return;
-      const { w: vw, h: vh } = getSize();
+      let img = frames[idx];
+      for (let i = idx; i >= 0 && !img; i--) img = frames[i];
+      return img;
+    };
+
+    const coverDraw = (img: HTMLImageElement, vw: number, vh: number) => {
       const scale = Math.max(vw / img.width, vh / img.height);
       const w = img.width * scale;
       const h = img.height * scale;
-      const x = (vw - w) / 2;
-      const y = (vh - h) / 2;
+      ctx.drawImage(img, (vw - w) / 2, (vh - h) / 2, w, h);
+    };
+
+    const drawAt = (exactIdx: number) => {
+      const frames = framesRef.current;
+      if (!frames.length) return;
+      const last = frames.length - 1;
+      const lo = Math.max(0, Math.min(Math.floor(exactIdx), last));
+      const hi = Math.min(lo + 1, last);
+      const frac = exactIdx - lo;
+
+      const imgLo = findLoaded(lo);
+      if (!imgLo) return;
+
+      const { w: vw, h: vh } = getSize();
+      ctx.globalAlpha = 1;
       ctx.fillStyle = "#050505";
       ctx.fillRect(0, 0, vw, vh);
-      ctx.drawImage(img, x, y, w, h);
+      coverDraw(imgLo, vw, vh);
+
+      if (frac > 0.005 && hi !== lo) {
+        const imgHi = findLoaded(hi);
+        if (imgHi && imgHi !== imgLo) {
+          ctx.globalAlpha = frac;
+          coverDraw(imgHi, vw, vh);
+          ctx.globalAlpha = 1;
+        }
+      }
     };
 
     const sizeCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const { w: vw, h: vh } = getSize();
-      const targetW = isMobile ? 1080 : vw;
-      const targetH = isMobile ? 608 : vh;
-      canvas.width = Math.floor(targetW * dpr);
-      canvas.height = Math.floor(targetH * dpr);
+      const { w, h } = getSize();
+      if (w === 0 || h === 0) return;
+      const baseDpr = Math.min(window.devicePixelRatio || 1, 2);
+      const cap = isMobile ? 1600 : 3200;
+      const longest = Math.max(w, h);
+      const dpr = Math.min(baseDpr, cap / longest);
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
       canvas.style.width = "100%";
       canvas.style.height = "100%";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
-      drawFrame(frameStateRef.current.index);
+      drawAt(frameStateRef.current.exact);
     };
 
     const renderAt = (progress: number) => {
       const frames = framesRef.current;
       if (!frames.length) return;
-      const idx = Math.round(progress * (frames.length - 1));
-      frameStateRef.current.index = idx;
-      if (frameStateRef.current.rafPending) return;
-      frameStateRef.current.rafPending = true;
-      requestAnimationFrame(() => {
-        frameStateRef.current.rafPending = false;
-        drawFrame(frameStateRef.current.index);
-      });
+      const exact = progress * (frames.length - 1);
+      frameStateRef.current.exact = exact;
+      frameStateRef.current.index = Math.round(exact);
+      drawAt(exact);
     };
 
     sizeCanvas();
@@ -212,7 +232,7 @@ export default function Hero() {
           start: "top top",
           end: `+=${runway}%`,
           pin: pin,
-          scrub: 1.5,
+          scrub: 2,
           anticipatePin: 1,
         },
       });

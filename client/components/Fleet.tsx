@@ -308,6 +308,7 @@ export default function Fleet() {
           display: "flex",
           alignItems: "center",
           paddingBottom: isDesktop ? 0 : "clamp(60px, 10vh, 120px)",
+          width: "100%",
         }}
       >
         <div
@@ -315,10 +316,11 @@ export default function Fleet() {
           style={{
             display: "flex",
             flexDirection: isDesktop ? "row" : "column",
-            alignItems: "center",
+            alignItems: isDesktop ? "center" : "stretch",
             gap: isDesktop ? "clamp(28px, 3.5vw, 56px)" : "clamp(24px, 4vh, 56px)",
             paddingLeft: isDesktop ? "clamp(24px, 6vw, 96px)" : "clamp(20px, 5vw, 48px)",
             paddingRight: isDesktop ? "clamp(24px, 6vw, 96px)" : "clamp(20px, 5vw, 48px)",
+            width: isDesktop ? undefined : "100%",
             willChange: isDesktop ? "transform" : "auto",
           }}
         >
