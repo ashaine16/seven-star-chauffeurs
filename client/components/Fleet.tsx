@@ -496,6 +496,15 @@ function FleetCard({
               background: "transparent",
               border: "1px solid var(--gold)",
               borderRadius: "2px",
+              transition: "background 300ms, color 300ms",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "var(--gold)";
+              e.currentTarget.style.color = "var(--obsidian)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+              e.currentTarget.style.color = "var(--gold)";
             }}
           >
             Info
@@ -635,7 +644,7 @@ function FleetCard({
         <a
           href="#reserve"
           onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}
-          className="inline-flex items-center justify-center"
+          className="inline-flex items-center justify-center btn-gold"
           style={{
             padding: "12px 28px",
             fontFamily: "var(--font-sans)",

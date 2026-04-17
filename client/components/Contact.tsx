@@ -505,7 +505,7 @@ function ReserveForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex items-center justify-center"
+          className="inline-flex items-center justify-center btn-gold"
           style={{
             padding: "18px 36px",
             fontFamily: "var(--font-sans)",

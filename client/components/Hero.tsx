@@ -138,7 +138,7 @@ function HeroContent({ onReserve, onFleet }: { onReserve: () => void; onFleet: (
         <a
           href="#reserve"
           onClick={(e) => { e.preventDefault(); onReserve(); }}
-          className="inline-flex items-center justify-center"
+          className="inline-flex items-center justify-center btn-gold"
           style={{
             padding: "12px 24px",
             fontFamily: "var(--font-sans)",
@@ -152,6 +152,13 @@ function HeroContent({ onReserve, onFleet }: { onReserve: () => void; onFleet: (
             borderRadius: "2px",
             minWidth: "150px",
             boxShadow: "0 8px 24px -10px rgba(212,160,74,0.4)",
+            transition: "box-shadow 400ms cubic-bezier(0.33,1,0.68,1)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.boxShadow = "0 12px 36px -8px rgba(212,160,74,0.6)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = "0 8px 24px -10px rgba(212,160,74,0.4)";
           }}
         >
           Reserve
@@ -172,6 +179,17 @@ function HeroContent({ onReserve, onFleet }: { onReserve: () => void; onFleet: (
             border: "1px solid rgba(244,240,232,0.35)",
             borderRadius: "2px",
             minWidth: "150px",
+            transition: "background 400ms cubic-bezier(0.33,1,0.68,1), color 400ms cubic-bezier(0.33,1,0.68,1), border-color 400ms cubic-bezier(0.33,1,0.68,1)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(244,240,232,0.12)";
+            e.currentTarget.style.borderColor = "var(--ivory)";
+            e.currentTarget.style.color = "var(--ivory)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.borderColor = "rgba(244,240,232,0.35)";
+            e.currentTarget.style.color = "var(--ivory)";
           }}
         >
           View Fleet

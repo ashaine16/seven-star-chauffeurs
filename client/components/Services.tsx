@@ -395,11 +395,55 @@ function ServiceBlock({
             {service.description}
           </p>
 
+          {service.bullets.length > 0 && (
+            <ul
+              style={{
+                margin: 0,
+                marginTop: "16px",
+                padding: 0,
+                listStyle: "none",
+                display: "flex",
+                flexDirection: "column",
+                gap: "8px",
+              }}
+            >
+              {service.bullets.map((b) => (
+                <li
+                  key={b}
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    gap: "10px",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "13px",
+                    fontWeight: 300,
+                    lineHeight: 1.6,
+                    letterSpacing: "0.015em",
+                    color: "var(--chrome)",
+                  }}
+                >
+                  <span
+                    aria-hidden
+                    style={{
+                      flex: "0 0 auto",
+                      width: "16px",
+                      height: "1px",
+                      background: "var(--gold)",
+                      marginTop: "9px",
+                      opacity: 0.6,
+                    }}
+                  />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
           <a
             data-service-cta
             href="#reserve"
             onClick={(e) => { e.preventDefault(); smoothScrollTo("#reserve"); }}
-            className="inline-flex items-center justify-center"
+            className="inline-flex items-center justify-center btn-gold"
             style={{
               marginTop: "22px",
               padding: "12px 24px",
