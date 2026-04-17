@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://sevenstarchauffeurs.com/</loc>
-    <lastmod>2026-04-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://sevenstarchauffeurs.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/about/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/fleet/rolls-royce-phantom/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/fleet/rolls-royce-ghost/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/fleet/rolls-royce-cullinan-black-badge/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/fleet/mercedes-maybach-gls-600/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/fleet/cadillac-escalade-iq/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/fleet/luxury-party-bus/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/services/airport-chauffeur-yvr/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/services/corporate-chauffeur/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/services/wedding-chauffeur/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/services/whistler-sea-to-sky/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/services/nightlife-events/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/services/hourly-charter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/luxury-chauffeur-vancouver/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-west-vancouver/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-north-vancouver/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-burnaby/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-richmond/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-surrey/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-langley/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-white-rock/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-whistler/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-sea-to-sky/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/areas/chauffeur-service-okanagan/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/privacy-policy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/terms-of-service/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://sevenstarchauffeurs.com/accessibility/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

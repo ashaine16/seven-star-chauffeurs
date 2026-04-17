@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     template: "%s | Seven Star Chauffeurs",
   },
   description:
-    "Vancouver's most discreet private chauffeur service. Rolls Royce Phantom, Ghost, Cullinan Black Badge, Mercedes Maybach GLS 600, Cadillac Escalade IQ and a private luxury touring coach. One engagement at a time, by appointment only.",
+    "Vancouver's most discreet private chauffeur service. Rolls-Royce Phantom, Ghost, Cullinan Black Badge, Mercedes-Maybach GLS 600, Cadillac Escalade IQ and a private luxury touring coach. One engagement at a time, by appointment only.",
   keywords: [
     "Vancouver luxury chauffeur",
-    "Rolls Royce Phantom chauffeur Vancouver",
+    "Rolls-Royce Phantom chauffeur Vancouver",
     "private chauffeur Vancouver",
     "YVR airport chauffeur",
     "wedding chauffeur Vancouver",
@@ -23,6 +23,16 @@ export const metadata: Metadata = {
     "Maybach chauffeur Vancouver",
     "Cadillac Escalade IQ chauffeur",
     "luxury party bus Vancouver",
+    "luxury car service Vancouver",
+    "chauffeur service West Vancouver",
+    "chauffeur service North Vancouver",
+    "chauffeur service Burnaby",
+    "chauffeur service Richmond",
+    "chauffeur service Surrey",
+    "chauffeur service Langley",
+    "chauffeur service White Rock",
+    "private driver Vancouver",
+    "black car service Vancouver",
   ],
   authors: [{ name: "Seven Star Chauffeurs" }],
   creator: "Seven Star Chauffeurs",
@@ -37,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Seven Star Chauffeurs",
     title: "Seven Star Chauffeurs | Vancouver's Most Exclusive Luxury Chauffeur Service",
     description:
-      "Rolls Royce, Maybach, Escalade IQ. Vancouver's most discreet and exceptional chauffeur service. By appointment only.",
+      "Rolls-Royce, Maybach, Escalade IQ. Vancouver's most discreet and exceptional chauffeur service. By appointment only.",
     images: [
       {
         url: "/logos/seven-star-gold.webp",
@@ -75,6 +85,8 @@ export const metadata: Metadata = {
   category: "transportation",
   other: {
     "theme-color": "#050505",
+    "geo.region": "CA-BC",
+    "geo.placename": "Vancouver",
   },
 };
 
@@ -103,7 +115,7 @@ const JSON_LD = {
       },
       slogan: "Discretion, driven.",
       description:
-        "Vancouver's most discreet private chauffeur service. Rolls Royce Phantom, Ghost, Cullinan Black Badge, Mercedes Maybach GLS 600, Cadillac Escalade IQ.",
+        "Vancouver's most discreet private chauffeur service. Rolls-Royce Phantom, Ghost, Cullinan Black Badge, Mercedes-Maybach GLS 600, Cadillac Escalade IQ.",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Vancouver",
@@ -131,7 +143,7 @@ const JSON_LD = {
       url: SITE_URL,
       name: "Seven Star Chauffeurs",
       description:
-        "Vancouver's most discreet private chauffeur service. By invitation.",
+        "Vancouver's most discreet private chauffeur service. By appointment only.",
       publisher: { "@id": `${SITE_URL}#organization` },
       inLanguage: "en-CA",
     },
@@ -152,6 +164,13 @@ const JSON_LD = {
       },
       areaServed: [
         { "@type": "City", name: "Vancouver" },
+        { "@type": "City", name: "West Vancouver" },
+        { "@type": "City", name: "North Vancouver" },
+        { "@type": "City", name: "Burnaby" },
+        { "@type": "City", name: "Richmond" },
+        { "@type": "City", name: "Surrey" },
+        { "@type": "City", name: "Langley" },
+        { "@type": "City", name: "White Rock" },
         { "@type": "City", name: "Whistler" },
         { "@type": "AdministrativeArea", name: "British Columbia" },
       ],
@@ -159,13 +178,8 @@ const JSON_LD = {
         {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
+            "Monday", "Tuesday", "Wednesday", "Thursday",
+            "Friday", "Saturday", "Sunday",
           ],
           opens: "00:00",
           closes: "23:59",
@@ -180,6 +194,13 @@ const JSON_LD = {
       provider: { "@id": `${SITE_URL}#organization` },
       areaServed: [
         { "@type": "City", name: "Vancouver" },
+        { "@type": "City", name: "West Vancouver" },
+        { "@type": "City", name: "North Vancouver" },
+        { "@type": "City", name: "Burnaby" },
+        { "@type": "City", name: "Richmond" },
+        { "@type": "City", name: "Surrey" },
+        { "@type": "City", name: "Langley" },
+        { "@type": "City", name: "White Rock" },
         { "@type": "City", name: "Whistler" },
         { "@type": "AdministrativeArea", name: "British Columbia" },
       ],
@@ -192,8 +213,7 @@ const JSON_LD = {
             itemOffered: {
               "@type": "Service",
               name: "Airport Transfers at YVR",
-              description:
-                "Meet-and-greet at International Arrivals, flight tracked, luggage service, Phantom or Maybach at the kerb.",
+              description: "Meet-and-greet at International Arrivals, flight tracked, luggage service, Phantom or Maybach at the kerb.",
             },
           },
           {
@@ -201,8 +221,7 @@ const JSON_LD = {
             itemOffered: {
               "@type": "Service",
               name: "Corporate Chauffeur",
-              description:
-                "Single-driver continuity for executive engagements across Metro Vancouver and inter province. NDA ready.",
+              description: "Single-driver continuity for executive engagements across Metro Vancouver and inter province. NDA ready.",
             },
           },
           {
@@ -210,8 +229,7 @@ const JSON_LD = {
             itemOffered: {
               "@type": "Service",
               name: "Wedding Chauffeur",
-              description:
-                "Cullinan Black Badge with custom livery, red carpet arrival, photographer liaison, multi location choreography.",
+              description: "Cullinan Black Badge with custom livery, red carpet arrival, photographer liaison, multi location choreography.",
             },
           },
           {
@@ -219,8 +237,7 @@ const JSON_LD = {
             itemOffered: {
               "@type": "Service",
               name: "Whistler & Sea to Sky",
-              description:
-                "Fully electric Cadillac Escalade IQ between Vancouver and Whistler. Scenic stopovers by request.",
+              description: "Fully electric Cadillac Escalade IQ between Vancouver and Whistler. Scenic stopovers by request.",
             },
           },
           {
@@ -228,8 +245,7 @@ const JSON_LD = {
             itemOffered: {
               "@type": "Service",
               name: "Nightlife & Events",
-              description:
-                "Private touring coach for galas, premieres, and bachelor or bachelorette evenings. Up to fourteen guests.",
+              description: "Private touring coach for galas, premieres, and bachelor or bachelorette evenings. Up to fourteen guests.",
             },
           },
           {
@@ -237,8 +253,7 @@ const JSON_LD = {
             itemOffered: {
               "@type": "Service",
               name: "Hourly Charter",
-              description:
-                "Mercedes Maybach GLS 600 on retainer. Two hour minimum, champagne service, revisable itinerary.",
+              description: "Mercedes-Maybach GLS 600 on retainer. Two hour minimum, champagne service, revisable itinerary.",
             },
           },
         ],
@@ -282,10 +297,10 @@ const JSON_LD = {
         },
         {
           "@type": "Question",
-          name: "What destinations does Seven Star serve?",
+          name: "What areas does Seven Star Chauffeurs serve?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Metro Vancouver primarily. Whistler and the Sea to Sky corridor by standing route. Other destinations within Western Canada by arrangement.",
+            text: "Seven Star Chauffeurs serves Metro Vancouver including Vancouver, West Vancouver, North Vancouver, Burnaby, Richmond, Surrey, Langley, and White Rock. We also serve the Sea-to-Sky Corridor to Whistler and the Okanagan. Cross-border service to Seattle is available by arrangement.",
           },
         },
         {
@@ -305,7 +320,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en-CA">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -332,7 +347,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
         />
       </head>
-      <body className="page-in">{children}</body>
+      <body className="page-in">
+        <main id="main-content">{children}</main>
+      </body>
     </html>
   );
 }

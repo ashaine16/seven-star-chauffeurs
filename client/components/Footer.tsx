@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef } from "react";
 import NextImage from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -24,29 +25,35 @@ function smoothScrollTo(target: string) {
 }
 
 const FLEET_LINKS = [
-  { label: "Rolls-Royce Phantom", href: "#fleet" },
-  { label: "Rolls-Royce Ghost", href: "#fleet" },
-  { label: "Rolls-Royce Cullinan", href: "#fleet" },
-  { label: "Mercedes-Maybach GLS", href: "#fleet" },
-  { label: "Cadillac Escalade IQ", href: "#fleet" },
-  { label: "Luxury Party Bus", href: "#fleet" },
+  { label: "Rolls-Royce Phantom", href: "/fleet/rolls-royce-phantom/" },
+  { label: "Rolls-Royce Ghost", href: "/fleet/rolls-royce-ghost/" },
+  { label: "Rolls-Royce Cullinan", href: "/fleet/rolls-royce-cullinan-black-badge/" },
+  { label: "Mercedes-Maybach GLS", href: "/fleet/mercedes-maybach-gls-600/" },
+  { label: "Cadillac Escalade IQ", href: "/fleet/cadillac-escalade-iq/" },
+  { label: "Luxury Party Bus", href: "/fleet/luxury-party-bus/" },
 ];
 
 const SERVICE_LINKS = [
-  { label: "Airport Transfers", href: "#services" },
-  { label: "Corporate Chauffeur", href: "#services" },
-  { label: "Wedding Chauffeur", href: "#services" },
-  { label: "Whistler & Sea-to-Sky", href: "#services" },
-  { label: "Nightlife & Events", href: "#services" },
-  { label: "Hourly Charter", href: "#services" },
+  { label: "Airport Transfers", href: "/services/airport-chauffeur-yvr/" },
+  { label: "Corporate Chauffeur", href: "/services/corporate-chauffeur/" },
+  { label: "Wedding Chauffeur", href: "/services/wedding-chauffeur/" },
+  { label: "Whistler & Sea-to-Sky", href: "/services/whistler-sea-to-sky/" },
+  { label: "Nightlife & Events", href: "/services/nightlife-events/" },
+  { label: "Hourly Charter", href: "/services/hourly-charter/" },
 ];
 
-const SITE_LINKS = [
-  { label: "The Fleet", href: "#fleet" },
-  { label: "Services", href: "#services" },
-  { label: "Experience", href: "#experience" },
-  { label: "Enquiries", href: "#faq" },
-  { label: "Reserve", href: "#reserve" },
+const AREA_LINKS = [
+  { label: "Vancouver", href: "/areas/luxury-chauffeur-vancouver/" },
+  { label: "West Vancouver", href: "/areas/chauffeur-service-west-vancouver/" },
+  { label: "North Vancouver", href: "/areas/chauffeur-service-north-vancouver/" },
+  { label: "Burnaby", href: "/areas/chauffeur-service-burnaby/" },
+  { label: "Richmond", href: "/areas/chauffeur-service-richmond/" },
+  { label: "Surrey", href: "/areas/chauffeur-service-surrey/" },
+  { label: "Langley", href: "/areas/chauffeur-service-langley/" },
+  { label: "White Rock", href: "/areas/chauffeur-service-white-rock/" },
+  { label: "Whistler", href: "/areas/chauffeur-service-whistler/" },
+  { label: "Sea-to-Sky", href: "/areas/chauffeur-service-sea-to-sky/" },
+  { label: "Okanagan", href: "/areas/chauffeur-service-okanagan/" },
 ];
 
 export default function Footer() {
@@ -107,7 +114,7 @@ export default function Footer() {
             "clamp(72px, 10vh, 120px) clamp(24px, 5vw, 64px) clamp(36px, 5vh, 56px)",
         }}
       >
-        {/* Top editorial line — hairline with gold segment at 1/8 mark */}
+        {/* Top editorial line */}
         <div
           aria-hidden
           style={{
@@ -144,12 +151,8 @@ export default function Footer() {
             data-footer-reveal
             style={{ willChange: "transform, opacity" }}
           >
-            <a
-              href="#top"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
+            <Link
+              href="/"
               aria-label="Seven Star Chauffeurs"
               style={{
                 display: "inline-block",
@@ -168,7 +171,7 @@ export default function Footer() {
                   filter: "drop-shadow(0 2px 20px rgba(5,5,5,0.5))",
                 }}
               />
-            </a>
+            </Link>
             <p
               style={{
                 marginTop: "clamp(20px, 3vh, 28px)",
@@ -181,7 +184,7 @@ export default function Footer() {
                 maxWidth: "36ch",
               }}
             >
-              Vancouver's most discreet private chauffeur service. Six vehicles,
+              Vancouver&rsquo;s most discreet private chauffeur service. Six vehicles,
               one standard, reserved one engagement at a time.
             </p>
 
@@ -249,7 +252,7 @@ export default function Footer() {
               />
               <FooterContact
                 eyebrow="Studio"
-                value={`Vancouver, British Columbia`}
+                value="Vancouver, British Columbia"
               />
               <FooterContact
                 eyebrow="Availability"
@@ -280,6 +283,61 @@ export default function Footer() {
                 icon={<MailIcon />}
               />
             </div>
+          </div>
+        </div>
+
+        {/* ── Areas Served Row ── */}
+        <div
+          data-footer-reveal
+          style={{
+            marginTop: "clamp(40px, 6vh, 64px)",
+            willChange: "transform, opacity",
+          }}
+        >
+          <FooterHeading>Areas Served</FooterHeading>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "8px 16px",
+            }}
+          >
+            {AREA_LINKS.map((area, i) => (
+              <span key={area.label} style={{ display: "inline-flex", alignItems: "center", gap: "16px" }}>
+                <Link
+                  href={area.href}
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontWeight: 300,
+                    fontSize: "13px",
+                    color: "var(--chrome)",
+                    letterSpacing: "0.015em",
+                    textDecoration: "none",
+                    transition: "color 300ms cubic-bezier(0.33,1,0.68,1)",
+                    whiteSpace: "nowrap",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--gold)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--chrome)";
+                  }}
+                >
+                  {area.label}
+                </Link>
+                {i < AREA_LINKS.length - 1 && (
+                  <span
+                    aria-hidden
+                    style={{
+                      color: "rgba(212,160,74,0.3)",
+                      fontSize: "8px",
+                    }}
+                  >
+                    &#9670;
+                  </span>
+                )}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -316,11 +374,11 @@ export default function Footer() {
                 letterSpacing: "0.04em",
               }}
             >
-              © {year} Seven Star Chauffeurs. All rights reserved.
+              &copy; {year} Seven Star Chauffeurs. All rights reserved.
             </span>
-            <SmallLink href="#reserve">Privacy</SmallLink>
-            <SmallLink href="#reserve">Terms</SmallLink>
-            <SmallLink href="#reserve">Accessibility</SmallLink>
+            <SmallLink href="/privacy-policy/">Privacy</SmallLink>
+            <SmallLink href="/terms-of-service/">Terms</SmallLink>
+            <SmallLink href="/accessibility/">Accessibility</SmallLink>
           </div>
 
           <div
@@ -374,14 +432,8 @@ function FooterList({
     >
       {items.map((item) => (
         <li key={item.label}>
-          <a
+          <Link
             href={item.href}
-            onClick={(e) => {
-              if (item.href.startsWith("#")) {
-                e.preventDefault();
-                smoothScrollTo(item.href);
-              }
-            }}
             style={{
               fontFamily: "var(--font-sans)",
               fontWeight: 300,
@@ -400,7 +452,7 @@ function FooterList({
             }}
           >
             {item.label}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
@@ -469,14 +521,8 @@ function SmallLink({
   children: React.ReactNode;
 }) {
   return (
-    <a
+    <Link
       href={href}
-      onClick={(e) => {
-        if (href.startsWith("#")) {
-          e.preventDefault();
-          smoothScrollTo(href);
-        }
-      }}
       style={{
         fontFamily: "var(--font-sans)",
         fontSize: "12px",
@@ -495,7 +541,7 @@ function SmallLink({
       }}
     >
       {children}
-    </a>
+    </Link>
   );
 }
 
@@ -598,15 +644,7 @@ function SocialIcon({
 function InstagramIcon() {
   return (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect
-        x="3"
-        y="3"
-        width="18"
-        height="18"
-        rx="4.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
+      <rect x="3" y="3" width="18" height="18" rx="4.5" stroke="currentColor" strokeWidth="1.2" />
       <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.2" />
       <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" />
     </svg>
@@ -616,15 +654,7 @@ function InstagramIcon() {
 function LinkedInIcon() {
   return (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect
-        x="3"
-        y="3"
-        width="18"
-        height="18"
-        rx="2.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
+      <rect x="3" y="3" width="18" height="18" rx="2.5" stroke="currentColor" strokeWidth="1.2" />
       <path
         d="M7.5 10v7M7.5 7.5v.01M11 10v7M11 13c0-1.7 1.2-3 2.8-3s2.7 1.3 2.7 3v4"
         stroke="currentColor"
@@ -638,22 +668,8 @@ function LinkedInIcon() {
 function MailIcon() {
   return (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect
-        x="3"
-        y="5"
-        width="18"
-        height="14"
-        rx="1.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-      <path
-        d="M4 7l8 6 8-6"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" strokeWidth="1.2" />
+      <path d="M4 7l8 6 8-6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
