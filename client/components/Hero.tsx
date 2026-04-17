@@ -158,12 +158,23 @@ export default function Hero() {
       return img;
     };
 
-    const coverDraw = (img: HTMLImageElement, vw: number, vh: number) => {
+    const coverDraw = (
+      img: HTMLImageElement,
+      vw: number,
+      vh: number,
+      anchorX = 0.5,
+      anchorY = 0.5,
+    ) => {
       const scale = Math.max(vw / img.width, vh / img.height);
       const w = img.width * scale;
       const h = img.height * scale;
-      ctx.drawImage(img, (vw - w) / 2, (vh - h) / 2, w, h);
+      const x = (vw - w) * anchorX;
+      const y = (vh - h) * anchorY;
+      ctx.drawImage(img, x, y, w, h);
     };
+
+    const ax = isMobile ? 0.62 : 0.5;
+    const ay = isMobile ? 0.0 : 0.5;
 
     const drawAt = (exactIdx: number) => {
       const frames = framesRef.current;
@@ -180,13 +191,13 @@ export default function Hero() {
       ctx.globalAlpha = 1;
       ctx.fillStyle = "#050505";
       ctx.fillRect(0, 0, vw, vh);
-      coverDraw(imgLo, vw, vh);
+      coverDraw(imgLo, vw, vh, ax, ay);
 
       if (frac > 0.005 && hi !== lo) {
         const imgHi = findLoaded(hi);
         if (imgHi && imgHi !== imgLo) {
           ctx.globalAlpha = frac;
-          coverDraw(imgHi, vw, vh);
+          coverDraw(imgHi, vw, vh, ax, ay);
           ctx.globalAlpha = 1;
         }
       }
@@ -232,7 +243,7 @@ export default function Hero() {
           start: "top top",
           end: `+=${runway}%`,
           pin: pin,
-          scrub: 2,
+          scrub: 0.6,
           anticipatePin: 1,
         },
       });
